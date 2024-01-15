@@ -54,15 +54,15 @@ const AvatarDropdown = () => {
             <FaCog size={18} className="mr-2" />
             Settings
           </Link>
-          <Link
-            to="/sign-out"
-            className="flex items-center px-4 py-2 text-sm hover:bg-secondary"
+          <button
+            onClick={() => {}}
+            className="w-full flex items-center px-4 py-2 text-sm hover:bg-secondary"
             role="menuitem"
             tabIndex="-1"
           >
             <FaSignOutAlt size={18} className="mr-2" />
             Sign out
-          </Link>
+          </button>
         </div>
       </div>
     </div>

@@ -14,6 +14,13 @@
   background-color: #444;
 }
 
+.role-active {
+  color: #4caf50;
+}
+.role-inactive {
+  color: #ff5252;
+}
+
 /* Loader */
 .custom-loader {
   width: 50px;
@@ -53,3 +60,61 @@
 }
 
 /* Loader */
+
+/* Scrollbar */
+
+/* For WebKit browsers (Chrome, Safari) */
+/* You may need to adjust these styles based on your design */
+/* Vertical scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #333; /* Dark background color for the thumb */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Dark background color for the thumb on hover */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1a1a1a; /* Dark background color for the track */
+}
+
+/* Horizontal scrollbar */
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background-color: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover:horizontal {
+  background-color: #555;
+}
+
+::-webkit-scrollbar-track:horizontal {
+  background-color: #1a1a1a;
+}
+
+/* For Firefox */
+/* These styles may vary based on Firefox version and OS */
+/* You may need to adjust these styles based on your design */
+scrollbar-color: #1a1a1a #333;
+
+/* For Edge */
+/* You may need to adjust these styles based on your design */
+-ms-overflow-style: none;
+scrollbar-width: thin;
+
+/* Hide scrollbar in Edge but still keep the styling */
+/* You may need to adjust these styles based on your design */
+body {
+  scrollbar-color: #1a1a1a #333;
+}
+
+/* Scrollbar */
