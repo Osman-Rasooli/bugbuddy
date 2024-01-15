@@ -3,7 +3,7 @@ const Table = ({ list, title, className }) => {
   const tableHeadingArr = Object.keys(list[0]);
   return (
     <div className={`max-h-[400px]  overflow-y-auto ${className}`}>
-      <h2 className=" text-tertiary font-medium text-xl p-3 bg-secondary">
+      <h2 className=" text-tertiary inline-block font-medium text-xl p-3 bg-secondary">
         {title}
       </h2>
       <table className=" overflow-x-auto w-full border-[0.5px] rounded cursor-pointer  border-secondaryLight divide-y divide-whiteLight">
@@ -25,7 +25,7 @@ const Table = ({ list, title, className }) => {
               <td className="py-2 px-4 ">{li.id}</td>
               <td className="py-2 px-4">{li.name}</td>
               <td className="py-2 px-4">{li.email}</td>
-              <td className="py-2 px-4 flex items-center gap-2">
+              <td className="py-2 px-4 flex items-center gap-2 capitalize">
                 {li.role.icon} {li.role.name}
               </td>
               <td className="py-2 px-4 font-medium">

@@ -26,7 +26,7 @@ const AvatarDropdown = () => {
       <div
         className={`${
           isDropdownOpen ? "" : "hidden"
-        } origin-top-right absolute right-0 mt-2 w-48 shadow-sm shadow-secondaryLight rounded-sm overflow-hidden bg-white focus:outline-none`}
+        } origin-top-right absolute right-0 mt-2 w-48 z-50 shadow-sm shadow-white rounded-sm overflow-hidden bg-white focus:outline-none`}
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="avatarButton"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -12,6 +12,19 @@ const Sidebar = () => {
   const toggleSidebar = () => {
     setIsOpen((isOpen) => !isOpen);
   };
+
+  useEffect(() => {
+    // Event listener to update the sidebar state when window is resized
+    const handleResize = () => {
+      setIsOpen(window.innerWidth > 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <div
       className={`fixed inset-y-0 shadow-2xl left-0 z-50 ${
