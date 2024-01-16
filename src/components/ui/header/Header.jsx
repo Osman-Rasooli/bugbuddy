@@ -1,15 +1,18 @@
+import { useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { IoMoonSharp, IoSunnySharp } from "react-icons/io5";
 
 import AvatarDropdown from "../../avatarDropdown/AvatarDropdown";
 
 const Header = ({ title }) => {
+  const { pathname } = useLocation();
+  let heading = pathname === "/" ? "home" : pathname.split("/")[1];
   return (
     <header className=" text-white p-4 px-8 border-b-2 border-secondary flex items-center justify-between">
       <button className="md:hidden" onClick={() => {}}>
         <FaBars size={24} />
       </button>
-      <h1 className="text-2xl font-bold text-tertiary">{title}</h1>
+      <h1 className="text-2xl font-bold text-tertiary capitalize">{heading}</h1>
       <div className="flex items-center gap-2">
         <button
           onClick={() => {}}

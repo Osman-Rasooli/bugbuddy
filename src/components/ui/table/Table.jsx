@@ -8,7 +8,6 @@ const Table = ({ list, title, className, link }) => {
   }
 
   const columns = Array.from(new Set(list.flatMap((obj) => Object.keys(obj))));
-  console.log(columns);
 
   // Check if a value in a column corresponds to an icon and return the appropriate JSX
   const getCellValue = (row, column) => {
