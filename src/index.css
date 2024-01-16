@@ -14,12 +14,22 @@
   background-color: #444;
 }
 
-.role-active {
+/* Status */
+.status-active,
+.status-completed {
   color: #4caf50;
 }
-.role-inactive {
+.status-inactive {
   color: #ff5252;
 }
+.status-in-progress {
+  color: #3498db;
+}
+.status-on-hold {
+  color: #f39c12;
+}
+
+/* Status */
 
 /* Loader */
 .custom-loader {
@@ -118,3 +128,25 @@ body {
 }
 
 /* Scrollbar */
+
+/* Priority Tags */
+
+.priority-critical {
+  color: #ff6347;
+}
+.priority-high {
+  color: #ffaa00;
+}
+.priority-medium {
+  color: #3498db;
+}
+.priority-low {
+  color: #2ecc71;
+}
+
+/* Priority Tags */
+
+table td a {
+  font-weight: 400;
+  font-size: 1rem;
+}
