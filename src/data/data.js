@@ -117,9 +117,9 @@ export const dummyProjects = [
     startDate: "2023-01-01",
     endDate: "2023-06-30",
     manager: "Alice Johnson",
-    progress: 50,
+    progress: 78,
     priority: "high",
-    Bugs: 3,
+    Bugs: 9,
     Tasks: 25,
   },
   {
@@ -147,7 +147,7 @@ export const dummyProjects = [
     manager: "Charlie Davis",
     progress: 15,
     priority: "medium",
-    Bugs: 5,
+    Bugs: 15,
     Tasks: 10,
   },
   {
@@ -161,7 +161,7 @@ export const dummyProjects = [
     manager: "Bob Williams",
     progress: 100,
     priority: "critical",
-    Bugs: 0,
+    Bugs: 20,
     Tasks: 18,
   },
   {
@@ -175,7 +175,7 @@ export const dummyProjects = [
     manager: "Alice Johnson",
     progress: 50,
     priority: "high",
-    Bugs: 3,
+    Bugs: 5,
     Tasks: 25,
   },
   {

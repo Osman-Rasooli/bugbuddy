@@ -1,6 +1,7 @@
 import { icons } from "../../../data/data";
 import { Link } from "react-router-dom";
 import { trimString } from "../../../utils/utils";
+import ProgressBar from "../progressBar/ProgressBar";
 
 const Table = ({ list, title, className, link }) => {
   if (!list || list.length === 0) {
@@ -13,7 +14,11 @@ const Table = ({ list, title, className, link }) => {
   const getCellValue = (row, column) => {
     const value = row[column];
 
-    // Check if the column is 'priority' and if an icon exists for the priority value
+    if (column === "progress") {
+      return <ProgressBar progress={parseInt(value)} />;
+    }
+
+    // Check if an icon exists for the priority value
     if (Object.keys(icons).includes(column)) {
       return (
         <div
