@@ -10,7 +10,6 @@ import {
 } from "recharts";
 
 const CustomBarChart = ({ data, title }) => {
-  console.log(data);
   return (
     <div className="w-full h-[400px] py-10 mt-5 ">
       <h3 className="text-tertiary mb-5 font-bold pl-4 uppercase">{title}</h3>
