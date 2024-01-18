@@ -7,6 +7,7 @@ import {
   FaUserShield,
   FaPalette,
   FaBug,
+  FaRegFlag,
 } from "react-icons/fa";
 import { GoIssueOpened } from "react-icons/go";
 import { BsExclamationCircle, BsCheckCircle } from "react-icons/bs";
@@ -111,6 +112,7 @@ export const dummyProjects = [
   {
     id: 1,
     projectName: "E-commerce Platform",
+    alias: "ECP",
     description:
       "Build a comprehensive e-commerce platform with user authentication and payment integration.",
     status: "in progress",
@@ -125,6 +127,7 @@ export const dummyProjects = [
   {
     id: 2,
     projectName: "Mobile App Redesign",
+    alias: "MAR",
     description:
       "Redesign the user interface and improve user experience for the existing mobile application.",
     status: "completed",
@@ -139,6 +142,7 @@ export const dummyProjects = [
   {
     id: 3,
     projectName: "Internal Training Platform",
+    alias: "ITP",
     description:
       "Develop a training platform for internal use, providing courses and assessments for employees.",
     status: "on hold",
@@ -153,6 +157,7 @@ export const dummyProjects = [
   {
     id: 4,
     projectName: "Mobile App Redesign",
+    alias: "MAR",
     description:
       "Redesign the user interface and improve user experience for the existing mobile application.",
     status: "completed",
@@ -163,34 +168,6 @@ export const dummyProjects = [
     priority: "critical",
     Bugs: 20,
     Tasks: 18,
-  },
-  {
-    id: 5,
-    projectName: "E-commerce Platform",
-    description:
-      "Build a comprehensive e-commerce platform with user authentication and payment integration.",
-    status: "in progress",
-    startDate: "2023-01-01",
-    endDate: "2023-06-30",
-    manager: "Alice Johnson",
-    progress: 50,
-    priority: "high",
-    Bugs: 5,
-    Tasks: 25,
-  },
-  {
-    id: 6,
-    projectName: "E-commerce Platform",
-    description:
-      "Build a comprehensive e-commerce platform with user authentication and payment integration.",
-    status: "in progress",
-    startDate: "2023-01-01",
-    endDate: "2023-06-30",
-    manager: "Alice Johnson",
-    progress: 50,
-    priority: "low",
-    Bugs: 3,
-    Tasks: 25,
   },
 ];
 
@@ -213,6 +190,9 @@ export const icons = {
     "in progress": <BiRun />,
     active: <MdCheckCircle />,
     inactive: <MdCancel />,
+    open: <MdInfoOutline />,
+    review: <FaRegFlag />,
+    closed: <BsCheckCircle />,
   },
 };
 
@@ -332,9 +312,111 @@ export const dummyBugs = [
   },
 ];
 
+export const dummyTasks = [
+  {
+    id: 1,
+    name: "Fix Login Authentication Issue",
+    description: "Users are unable to log in due to authentication errors.",
+    assignedTo: "John Doe",
+    status: "open",
+    priority: "high",
+    createdDate: "2023-11-23",
+    dueDate: "2024-02-05",
+    closedDate: "",
+  },
+  {
+    id: 2,
+    name: "Implement Two-Factor Authentication",
+    description:
+      "Enhance security by adding two-factor authentication to the login process.",
+    assignedTo: "Jane Smith",
+    status: "in progress",
+    priority: "medium",
+    createdDate: "2023-11-23",
+    dueDate: "2024-02-10",
+    closedDate: "",
+  },
+  {
+    id: 3,
+    name: "Optimize Database Queries for Dashboard",
+    description:
+      "Improve performance by optimizing database queries on the dashboard page.",
+    assignedTo: "Alice Johnson",
+    status: "open",
+    priority: "high",
+    createdDate: "2024-01-03",
+    dueDate: "2024-02-08",
+    closedDate: "",
+  },
+  {
+    id: 4,
+    name: "Create User Profile Page",
+    description:
+      "Develop a user profile page with editable user information and preferences.",
+    assignedTo: "Bob Wilson",
+    status: "in progress",
+    priority: "critical",
+    createdDate: "2023-11-23",
+    dueDate: "2024-02-15",
+    closedDate: "",
+  },
+  {
+    id: 5,
+    name: "Test and Validate Contact Form",
+    description:
+      "Ensure the contact form is working correctly and validate input data.",
+    assignedTo: "Eva Rodriguez",
+    status: "review",
+    priority: "low",
+    createdDate: "2023-02-10",
+    dueDate: "2024-02-12",
+    closedDate: "",
+  },
+  {
+    id: 6,
+    name: "Optimize Database Queries for Dashboard",
+    description:
+      "Improve performance by optimizing database queries on the dashboard page.",
+    assignedTo: "David Lee",
+    status: "open",
+    priority: "high",
+    createdDate: "2023-12-03",
+    dueDate: "2024-02-08",
+    closedDate: "",
+  },
+  {
+    id: 7,
+    name: "Create User Profile Page",
+    description:
+      "Develop a user profile page with editable user information and preferences.",
+    assignedTo: "Bob Wilson",
+    status: "closed",
+    priority: "critical",
+    createdDate: "2023-01-10",
+    dueDate: "2024-01-15",
+    closedDate: "2024-01-15",
+  },
+  {
+    id: 8,
+    name: "Test and Validate Contact Form",
+    description:
+      "Ensure the contact form is working correctly and validate input data.",
+    assignedTo: "Sophia Taylor",
+    status: "review",
+    priority: "low",
+    createdDate: "2023-09-03",
+    dueDate: "2024-02-12",
+    closedDate: "",
+  },
+];
+
 export const colors = {
   critical: "#ff6347",
   high: "#ffaa00",
   medium: "#3498db",
   low: "#2ecc71",
+  open: "#2ecc71",
+  "in progress": "#87ceeb",
+  review: "royalblue",
+  closed: "#ff5252",
 };

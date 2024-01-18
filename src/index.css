@@ -16,17 +16,24 @@
 
 /* Status */
 .status-active,
-.status-completed {
+.status-completed,
+.status-closed {
   color: #4caf50;
 }
 .status-inactive {
   color: #ff5252;
 }
 .status-in-progress {
-  color: #3498db;
+  color: #87ceeb;
 }
 .status-on-hold {
   color: #f39c12;
+}
+.status-open {
+  color: #2ecc71;
+}
+.status-review {
+  color: royalblue;
 }
 
 /* Status */
@@ -132,7 +139,7 @@ body {
 /* Priority Tags */
 
 .priority-critical {
-  color: #ff6347;
+  color: red;
 }
 .priority-high {
   color: #ffaa00;

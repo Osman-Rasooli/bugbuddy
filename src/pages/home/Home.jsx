@@ -6,6 +6,7 @@ const Home = () => {
   // Bar Chart Data Preparing
   const dataProjects = dummyProjects.map((project) => ({
     name: project.projectName,
+    alias: project.alias,
     bugs: project.Bugs.toString(),
     tasks: project.Tasks.toString(),
   }));

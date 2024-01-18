@@ -12,10 +12,18 @@ const Table = ({ list, title, className, link }) => {
 
   // Check if a value in a column corresponds to an icon and return the appropriate JSX
   const getCellValue = (row, column) => {
-    const value = row[column];
+    let value = row[column];
+
+    if (!value || value.length === 0) {
+      value = " - ";
+    }
 
     if (column === "progress") {
       return <ProgressBar progress={parseInt(value)} />;
+    }
+
+    if (column === "dueDate") {
+      console.log("hello");
     }
 
     // Check if an icon exists for the priority value
@@ -74,7 +82,12 @@ const Table = ({ list, title, className, link }) => {
               className="font-thin whitespace-nowrap border-b-[0.5px] hover:text-[#fff] border-secondaryLight hover:bg-secondaryLight"
             >
               {columns.map((column) => (
-                <td key={column} className="py-2 px-4 font-normal">
+                <td
+                  key={column}
+                  className={`py-2 px-4 font-normal ${
+                    column === "closedDate" && "text-center"
+                  }`}
+                >
                   <Link to={link && `${row["id"]}`}>
                     {getCellValue(row, column)}
                   </Link>

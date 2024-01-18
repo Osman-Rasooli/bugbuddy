@@ -21,7 +21,7 @@ const CustomBarChart = ({ data, title }) => {
           margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="alias" />
           <YAxis />
           <Tooltip content={<CustomTooltip />} />
           <Legend />
