@@ -34,7 +34,7 @@ const Bugs = () => {
           data={chartData}
           xAxisKey={xAxisKey}
           dataKeys={barDataKeys}
-          title="Projects Overview"
+          title="Bugs Preview"
         />
       </div>
     </div>
