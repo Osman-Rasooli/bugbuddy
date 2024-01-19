@@ -5,7 +5,6 @@ import CustomBarChart from "../../components/ui/customBarChart/CustomBarChart";
 
 const Bugs = () => {
   const chartData = prepareDataForProjectStatusPriorityChart(dummyBugs);
-
   const xAxisKey = "project";
   const barDataKeys = [
     "open",
