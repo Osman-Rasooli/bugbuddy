@@ -36,9 +36,14 @@ const Tasks = () => {
         <OutlinedButton>Add Task</OutlinedButton>
       </div>
       <div>
-        <Table list={dummyTasks} title="Tasks" link="tasks" />
+        <Table
+          list={dummyTasks}
+          title="Tasks"
+          link="tasks"
+          className="max-h-[600px] flex-1"
+        />
       </div>
-      <div className="flex">
+      <div className="flex flex-col md:flex-row md:gap-5">
         <CustomPieChart data={pieChartData} title="Completion Rate" />
         <CustomPieChart
           data={pieChartPriorityData}

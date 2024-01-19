@@ -15,15 +15,23 @@
 }
 
 /* Status */
-.status-active,
-.status-completed,
-.status-closed {
+.status-active {
   color: #4caf50;
 }
+
+.status-closed {
+  color: #808080;
+}
+
+.status-resolved,
+.status-completed {
+  color: #0066cc;
+}
+
 .status-inactive {
   color: #ff5252;
 }
-.status-in-progress {
+.status-progressing {
   color: #87ceeb;
 }
 .status-on-hold {
@@ -138,10 +146,12 @@ body {
 
 /* Priority Tags */
 
-.priority-critical {
+.priority-critical,
+.severity-critical {
   color: red;
 }
-.priority-high {
+.priority-high,
+.severity-high {
   color: #ffaa00;
 }
 .priority-medium {

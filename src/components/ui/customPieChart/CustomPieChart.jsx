@@ -11,7 +11,7 @@ import { colors } from "../../../data/data";
 
 const CustomPieChart = ({ data, title }) => {
   return (
-    <div className="w-full h-[400px] py-10 mt-5 md:pr-10">
+    <div className="w-full h-[400px] py-10 pl-5 pb-14 mt-8 md:pr-10 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
       <h3 className="text-tertiary mb-5 font-bold pl-4 uppercase">{title}</h3>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={300}>

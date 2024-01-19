@@ -12,14 +12,14 @@ const Home = () => {
   }));
 
   // Pie Chart Data Preparing
-  const severityCounts = dummyBugs.reduce((acc, bug) => {
-    acc[bug.severity] = (acc[bug.severity] || 0) + 1;
+  const priorityCounts = dummyBugs.reduce((acc, bug) => {
+    acc[bug.priority] = (acc[bug.priority] || 0) + 1;
     return acc;
   }, {});
 
-  const pieChartData = Object.keys(severityCounts).map((severity) => ({
-    name: severity,
-    value: severityCounts[severity],
+  const pieChartData = Object.keys(priorityCounts).map((priority) => ({
+    name: priority,
+    value: priorityCounts[priority],
   }));
 
   return (
@@ -32,7 +32,12 @@ const Home = () => {
         />
       </div>
       <div className="flex flex-col md:flex-row md:gap-5">
-        <CustomBarchart data={dataProjects} title="Projects Overview" />
+        <CustomBarchart
+          data={dataProjects}
+          xAxisKey="alias"
+          dataKeys={["bugs", "tasks"]}
+          title="Projects Overview"
+        />
         <CustomPieChart data={pieChartData} title="Bugs Overview" />
       </div>
     </div>

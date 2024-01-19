@@ -9,9 +9,18 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const CustomBarChart = ({ data, title }) => {
+const CustomBarChart = ({ data, title, xAxisKey, dataKeys }) => {
+  const colors = [
+    "#2ecc71",
+    "#0066cc",
+    "#87ceeb",
+    "#2ecc71",
+    "#3498db",
+    "#ffaa00",
+    "#ff6347",
+  ];
   return (
-    <div className="w-full h-[400px] py-10 mt-5 ">
+    <div className="w-full h-[400px] py-10 pb-14 mt-8 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
       <h3 className="text-tertiary mb-5 font-bold pl-4 uppercase">{title}</h3>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
@@ -20,13 +29,20 @@ const CustomBarChart = ({ data, title }) => {
           data={data}
           margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
         >
+          {console.log(dataKeys)}
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="alias" />
+          <XAxis dataKey={xAxisKey} />
           <YAxis />
           <Tooltip content={<CustomTooltip />} />
           <Legend />
-          <Bar dataKey="tasks" fill="#8884d8" barSize={25} />
-          <Bar dataKey="bugs" fill="#ed2647" barSize={25} />
+          {dataKeys.map((dataKey, index) => (
+            <Bar
+              key={dataKey}
+              dataKey={dataKey}
+              fill={colors[index]}
+              barSize={25}
+            />
+          ))}
         </BarChart>
       </ResponsiveContainer>
     </div>
@@ -48,7 +64,10 @@ const CustomTooltip = ({ active, payload }) => {
     });
     return (
       <div className="custom-tooltip bg-secondaryLight text-white p-4 rounded shadow">
-        <p className="label text-md mb-2">{payload[0].payload.name}</p>
+        <p className="label text-md mb-2">
+          {payload[0].payload.name || payload[0].payload.project}
+        </p>
+        {console.log(payload)}
         <div>{content}</div>
       </div>
     );
