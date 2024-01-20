@@ -111,6 +111,10 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
               className="w-full bg-secondary px-2 py-1 rounded-sm outline-none"
               rows="4"
             ></textarea>
+            <small className="flex items-center gap-1 text-[red] mt-1">
+              <BsExclamationCircle />{" "}
+              <span>Project Description cannot be blank!</span>
+            </small>
           </div>
           <div className="flex md:justify-end">
             <Button type="submit" className="border-none flex-1 md:flex-none">
