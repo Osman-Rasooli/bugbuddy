@@ -4,9 +4,9 @@ import Input from "../ui/form/Input";
 import TextArea from "../ui/form/TextArea";
 import Select from "../ui/form/Select";
 
-import { priorityList, statusList, dummyUsers } from "../../data/data.js";
+import { priorityList, statusList, dummyUsers } from "../../data/data";
 
-const CreateProjectModal = ({ isOpen, onClose }) => {
+const CreateBugModal = ({ isOpen, onClose }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("data");
@@ -14,27 +14,27 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="w-full md:min-w-[500px]">
-        <h2 className="text-tertiary border-b-[1px] pb-2">Create a New Task</h2>
+        <h2 className="text-tertiary border-b-[1px] pb-2">Report a New Bug</h2>
         <form onSubmit={submitHandler} className="mt-5 text-sm">
           <div className="flex flex-col md:flex-row gap-5 mb-3">
             <div className="flex-1">
               <Input
-                label="Task Name"
-                id="taskName"
-                name="taskName"
+                label="Bug Name"
+                id="bugName"
+                name="bugName"
                 type="text"
-                placeholder="Fix Login Authentication Issue"
-                errorText="Task Name cannot be blank!"
+                placeholder="UI Rendering Issue"
+                errorText="Bug Name cannot be blank!"
               />
             </div>
             <div className="flex-1">
               <Input
-                label="Related to Project"
+                label="Inflicted Project"
                 id="projectName"
                 name="projectName"
                 type="text"
                 placeholder="Aseel E-Commerce"
-                errorText="Related Project cannot be blank!"
+                errorText="Inflicted Project cannot be blank!"
               />
             </div>
           </div>
@@ -60,11 +60,11 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
           </div>
           <div className="mb-3">
             <TextArea
-              label="Task Description"
+              label="Bug Description"
               id="description"
               name="description"
-              placeholder="Task description..."
-              errorText="Task Description cannot be blank!"
+              placeholder="Bug description..."
+              errorText="Bug Description cannot be blank!"
             />
           </div>
           <div className="flex flex-col md:flex-row  gap-5 mb-3">
@@ -93,7 +93,7 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
               type="submit"
               className="border-none flex-1 md:flex-none font-bold"
             >
-              Add Task
+              Report Bug
             </Button>
           </div>
         </form>
@@ -102,4 +102,4 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default CreateProjectModal;
+export default CreateBugModal;

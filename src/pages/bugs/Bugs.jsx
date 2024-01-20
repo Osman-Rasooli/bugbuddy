@@ -1,9 +1,24 @@
+import { useState } from "react";
+
 import { dummyBugs } from "../../data/data";
 import { OutlinedButton } from "../../components/ui/button/Button";
 import Table from "../../components/ui/table/Table";
 import CustomBarChart from "../../components/ui/customBarChart/CustomBarChart";
 
+import CreateBugModal from "../../components/bugModal/CreateBugModal";
+
 const Bugs = () => {
+  // Create Bug Modal
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const chartData = prepareDataForProjectStatusPriorityChart(dummyBugs);
   const xAxisKey = "project";
   const barDataKeys = [
@@ -17,8 +32,9 @@ const Bugs = () => {
   ];
   return (
     <div className="text-whiteLight">
+      <CreateBugModal isOpen={isModalOpen} onClose={closeModal} />
       <div className="flex justify-end px-4">
-        <OutlinedButton>Add Bug</OutlinedButton>
+        <OutlinedButton onClick={openModal}>Add Bug</OutlinedButton>
       </div>
       <div>
         <Table

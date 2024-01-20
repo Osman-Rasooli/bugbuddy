@@ -1,14 +1,14 @@
 import Modal from "../ui/modal/Modal";
 import Button from "../ui/button/Button";
-
-import { BsExclamationCircle } from "react-icons/bs";
+import Input from "../ui/form/Input";
+import TextArea from "../ui/form/TextArea";
+import Select from "../ui/form/Select";
 
 import { priorityList } from "../../data/data.js";
 
 const CreateProjectModal = ({ isOpen, onClose }) => {
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("data");
   };
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -19,106 +19,61 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
         <form onSubmit={submitHandler} className="mt-5 text-sm">
           <div className="flex flex-col md:flex-row gap-5 mb-3">
             <div className="flex-1">
-              <label
-                htmlFor="projectName"
-                className="block mb-1 uppercase text-[12px]"
-              >
-                Project Name
-              </label>
-              <input
-                type="text"
-                name="projectName"
+              <Input
+                label="Project Name"
                 id="projectName"
+                name="projectName"
+                type="text"
                 placeholder="Aseel E-Commerce"
-                className="w-full bg-secondary px-2 py-1 rounded-sm outline-none"
+                errorText="Project Name cannot be blank!"
               />
-              <small className="flex items-center gap-1 text-[red] mt-1">
-                <BsExclamationCircle />{" "}
-                <span>Project Name cannot be blank!</span>
-              </small>
             </div>
             <div className="flex-1">
-              <label
-                htmlFor="alias"
-                className="block mb-1 uppercase text-[12px]"
-              >
-                A short Alias for the Project
-              </label>
-              <input
-                type="text"
-                name="alias"
+              <Input
+                label="A short Alias for the Project"
                 id="alias"
+                name="alias"
+                type="text"
                 placeholder="AEC"
-                className="w-full bg-secondary px-2 py-1 rounded-sm outline-none"
+                errorText="Alias cannot be blank!"
               />
-              <small className="flex items-center gap-1 text-[red] mt-1">
-                <BsExclamationCircle /> <span>Alias cannot be blank!</span>
-              </small>
             </div>
           </div>
           <div className="flex flex-col md:flex-row  gap-5 mb-3">
             <div className="flex-1">
-              <label
-                htmlFor="endDate"
-                className="block mb-1 uppercase text-[12px]"
-              >
-                Due Date
-              </label>
-              <input
-                type="date"
-                name="endDate"
+              <Input
+                label="Due Date"
                 id="endDate"
-                className="w-full bg-secondary px-2 py-1 rounded-sm outline-none"
+                name="endDate"
+                type="date"
+                errorText="Date cannot be blank!"
               />
-              <small className="flex items-center gap-1 text-[red] mt-1">
-                <BsExclamationCircle /> <span>Date cannot be blank!</span>
-              </small>
             </div>
             <div className="flex-1">
-              <label
-                htmlFor="priority"
-                className="block mb-1 uppercase text-[12px]"
-              >
-                Priority
-              </label>
-              <select
+              <Select
+                label="Priority"
                 id="priority"
                 name="priority"
-                className="w-full bg-secondary px-2 py-[6px] rounded-sm outline-none"
-              >
-                {priorityList.map((priority) => (
-                  <option key={priority} value={priority}>
-                    {priority}
-                  </option>
-                ))}
-              </select>
-              <small className="flex items-center gap-1 text-[red] mt-1">
-                <BsExclamationCircle /> <span>Select a priority</span>
-              </small>
+                errorText="Select a priority"
+                options={priorityList}
+              />
             </div>
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="description"
-              className="block mb-1 uppercase text-[12px]"
-            >
-              Project Description
-            </label>
-            <textarea
-              name="description"
+            <TextArea
+              label="Project Description"
               id="description"
+              name="description"
               placeholder="Project description..."
-              className="w-full bg-secondary px-2 py-1 rounded-sm outline-none"
-              rows="4"
-            ></textarea>
-            <small className="flex items-center gap-1 text-[red] mt-1">
-              <BsExclamationCircle />{" "}
-              <span>Project Description cannot be blank!</span>
-            </small>
+              errorText="Project Description cannot be blank!"
+            />
           </div>
           <div className="flex md:justify-end">
-            <Button type="submit" className="border-none flex-1 md:flex-none">
-              Create Project
+            <Button
+              type="submit"
+              className="border-none flex-1 md:flex-none font-bold"
+            >
+              Add Project
             </Button>
           </div>
         </form>
