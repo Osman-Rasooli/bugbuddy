@@ -13,28 +13,25 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="w-full md:min-w-[500px]">
-        <h2 className="text-tertiary border-b-[1px] pb-2">
-          Create a New Project
-        </h2>
+        <h2 className="text-tertiary border-b-[1px] pb-2">Create a New Task</h2>
         <form onSubmit={submitHandler} className="mt-5 text-sm">
           <div className="flex flex-col md:flex-row gap-5 mb-3">
             <div className="flex-1">
               <label
-                htmlFor="projectName"
+                htmlFor="taskName"
                 className="block mb-1 uppercase text-[12px]"
               >
-                Project Name
+                Task Name
               </label>
               <input
                 type="text"
-                name="projectName"
-                id="projectName"
-                placeholder="Aseel E-Commerce"
+                name="taskName"
+                id="taskName"
+                placeholder="Fix Login Authentication Issue"
                 className="w-full bg-secondary px-2 py-1 rounded-sm outline-none"
               />
               <small className="flex items-center gap-1 text-[red] mt-1">
-                <BsExclamationCircle />{" "}
-                <span>Project Name cannot be blank!</span>
+                <BsExclamationCircle /> <span>Task Name cannot be blank!</span>
               </small>
             </div>
             <div className="flex-1">

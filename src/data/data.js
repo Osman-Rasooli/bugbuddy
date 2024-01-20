@@ -423,3 +423,5 @@ export const colors = {
   resolved: "#0066cc",
   completed: "#0066cc",
 };
+
+export const priorityList = ["critical", "high", "medium", "low"];

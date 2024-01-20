@@ -1,9 +1,23 @@
+import { useState } from "react";
+
 import Table from "../../components/ui/table/Table";
 import CustomPieChart from "../../components/ui/customPieChart/CustomPieChart";
 import { OutlinedButton } from "../../components/ui/button/Button";
 import { dummyTasks } from "../../data/data";
+import CreateTaskModal from "../../components/taskModal/createTaskModal";
 
 const Tasks = () => {
+  // Create Task Modal
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   // Preparing Tasks Pie Chart Data
   const statusCounts = dummyTasks.reduce((counts, task) => {
     const status = task.status.toLowerCase();
@@ -32,8 +46,9 @@ const Tasks = () => {
 
   return (
     <div className="text-whiteLight">
+      <CreateTaskModal isOpen={isModalOpen} onClose={closeModal} />
       <div className="flex justify-end px-4">
-        <OutlinedButton>Add Task</OutlinedButton>
+        <OutlinedButton onClick={openModal}>Add Task</OutlinedButton>
       </div>
       <div>
         <Table
