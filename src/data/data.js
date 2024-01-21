@@ -426,4 +426,4 @@ export const colors = {
 
 export const priorityList = ["critical", "high", "medium", "low"];
 
-export const statusList = ["open", "progressing", "review", "resolved"];
+export const statusList = ["open", "progressing", "review", "resolveddes"];

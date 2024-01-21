@@ -218,3 +218,7 @@ table td a {
 ::placeholder {
   color: rgba(255, 255, 255, 0.2) !important;
 }
+
+.login::placeholder {
+  color: #3333338b !important;
+}

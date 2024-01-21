@@ -1,5 +1,6 @@
-const Calendar = () => {
-  return <div>Calendar</div>;
+// import Calendar from "../../components/calendar/Calendar";
+const CalendarPage = () => {
+  return <button>Login</button>;
 };
 
-export default Calendar;
+export default CalendarPage;

@@ -2,6 +2,7 @@ import CustomBarchart from "../../components/ui/customBarChart/CustomBarChart";
 import CustomPieChart from "../../components/ui/customPieChart/CustomPieChart";
 import Table from "../../components/ui/table/Table";
 import { dummyUsers, dummyProjects, dummyBugs } from "../../data/data";
+
 const Home = () => {
   // Bar Chart Data Preparing
   const dataProjects = dummyProjects.map((project) => ({
