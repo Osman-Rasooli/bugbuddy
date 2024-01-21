@@ -13,9 +13,10 @@ const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const user = await account.createEmailSession(email, password);
-      setUser(user);
-      console.log(user);
+      await account.createEmailSession(email, password);
+      const userAccount = await account.get();
+      setUser(userAccount);
+      // console.log(userAccount);
     } catch (error) {
       console.error("Login error:", error);
       throw error;
@@ -45,7 +46,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkUser = async () => {
       try {
-        const { user } = await account.get();
+        const user = await account.get();
         setUser(user);
       } catch (error) {
         setUser(null);

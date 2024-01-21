@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaUserCircle, FaCog, FaSignOutAlt } from "react-icons/fa";
 
+import { useAuth } from "../../contexts/authContext";
+
 const AvatarDropdown = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const { logout } = useAuth();
 
   return (
     <div className="relative inline-block text-left">
@@ -55,7 +59,7 @@ const AvatarDropdown = () => {
             Settings
           </Link>
           <button
-            onClick={() => {}}
+            onClick={logout}
             className="w-full flex items-center px-4 py-2 text-sm hover:bg-secondary"
             role="menuitem"
             tabIndex="-1"

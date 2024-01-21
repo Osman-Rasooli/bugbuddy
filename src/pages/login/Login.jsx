@@ -1,14 +1,14 @@
 import logo from "../../assets/logo.png";
 import Input from "../../components/ui/form/Input";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { isValidEmail } from "../../utils/utils";
 
 import { useAuth } from "../../contexts/authContext";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, user } = useAuth();
 
   const navigate = useNavigate();
 
@@ -55,8 +55,6 @@ const Login = () => {
     if (!validate(emailValue, passwordValue)) {
       return;
     }
-    // If data is ok
-    // login(emailValue, passwordValue);
     try {
       // Attempt to log in the user using the login function from AuthContext
       await login(emailValue, passwordValue);
@@ -72,6 +70,12 @@ const Login = () => {
       }));
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-20 lg:px-8">
@@ -87,7 +91,6 @@ const Login = () => {
             className="space-y-2"
             onSubmit={handleSubmit}
             noValidate
-            autoComplete="off"
             method="post"
           >
             <div className="">
