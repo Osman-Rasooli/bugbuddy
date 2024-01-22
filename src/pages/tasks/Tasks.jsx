@@ -42,8 +42,6 @@ const Tasks = () => {
     value: priorityCounts[priority],
   }));
 
-  console.log(pieChartPriorityData);
-
   return (
     <div className="text-whiteLight">
       <CreateTaskModal isOpen={isModalOpen} onClose={closeModal} />

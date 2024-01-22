@@ -38,7 +38,7 @@ const extractSpecificData = (data) => {
     const { $id, name, description, status, priority, progress, createdBy } =
       document;
     return {
-      id: index + 1,
+      No: index + 1,
       $id,
       name,
       description,

@@ -26,7 +26,9 @@ const Table = ({ list, title, className, link }) => {
       value = " - ";
     }
     if (column === "progress") {
-      return <ProgressBar progress={parseInt(value) || 0} />;
+      return (
+        <ProgressBar progress={parseInt(value) || 0} className="h-[14px]" />
+      );
     }
 
     // Check if an icon exists for the priority value
