@@ -1,8 +1,9 @@
-import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { OutlinedButton } from "../../components/ui/button/Button";
 import { useProjects } from "../../contexts/projectsContext";
 import { getColor } from "../../utils/utils";
+
+import { IoIosArrowBack, IoIosCreate } from "react-icons/io";
 
 import { formatDateStringToHumanReadable } from "../../utils/utils";
 import ProgressBar from "../../components/ui/progressBar/ProgressBar";
@@ -16,19 +17,26 @@ const Details = () => {
   const project = projects.filter((item) => item.$id === id)[0];
 
   if (!project) return <h2 className="text-whiteLight">No Data Found!</h2>;
-  console.log(project);
 
   return (
     <div className="text-whiteLight">
-      <div className="flex justify-end px-4">
+      <div className="flex justify-center gap-2 md:justify-end px-4 mb-6 lg:mb-0">
         <Link to="/projects">
-          <OutlinedButton>Back to Projects</OutlinedButton>
+          <OutlinedButton className="flex gap-1 items-center">
+            <IoIosArrowBack />
+            Back
+          </OutlinedButton>
+        </Link>
+        <Link>
+          <OutlinedButton className="flex gap-1 items-center">
+            <IoIosCreate /> Update Project
+          </OutlinedButton>
         </Link>
       </div>
       <div className="px-4">
         {/* PROJECT NAME / ALIAS */}
-        <div className="flex gap-2 items-center mb-8">
-          <h2 className="text-tertiary leading-3 text-xl font-bold uppercase">
+        <div className="flex flex-col md:flex-row gap-2 items-center mb-8">
+          <h2 className="text-tertiary leading-7 text-xl font-bold uppercase text-center">
             {project.name}
           </h2>
           <h4 className=" leading-3 text-sm tracking-[1px]">
