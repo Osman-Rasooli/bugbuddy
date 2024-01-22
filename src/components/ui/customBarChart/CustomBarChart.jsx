@@ -29,7 +29,6 @@ const CustomBarChart = ({ data, title, xAxisKey, dataKeys }) => {
           data={data}
           margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
         >
-          {console.log(dataKeys)}
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey={xAxisKey} />
           <YAxis />
@@ -67,7 +66,6 @@ const CustomTooltip = ({ active, payload }) => {
         <p className="label text-md mb-2">
           {payload[0].payload.name || payload[0].payload.project}
         </p>
-        {console.log(payload)}
         <div>{content}</div>
       </div>
     );

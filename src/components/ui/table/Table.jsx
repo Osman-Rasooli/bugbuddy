@@ -8,22 +8,25 @@ const Table = ({ list, title, className, link }) => {
     return <h2>No data available</h2>;
   }
 
-  const columns = Array.from(new Set(list.flatMap((obj) => Object.keys(obj))));
+  // Getting all the column Headings except the $id
+  const columns = Array.from(
+    new Set(list.flatMap((obj) => Object.keys(obj)))
+  ).filter((column) => column !== "$id");
 
   // Check if a value in a column corresponds to an icon and return the appropriate JSX
   const getCellValue = (row, column) => {
     let value = row[column];
 
+    // We do not want to show the $id to users, so we skip it
+    if (column === "$id") {
+      return;
+    }
+
     if (!value || value.length === 0) {
       value = " - ";
     }
-
     if (column === "progress") {
-      return <ProgressBar progress={parseInt(value)} />;
-    }
-
-    if (column === "dueDate") {
-      console.log("hello");
+      return <ProgressBar progress={parseInt(value) || 0} />;
     }
 
     // Check if an icon exists for the priority value
@@ -51,6 +54,9 @@ const Table = ({ list, title, className, link }) => {
           break;
         case "on hold":
           style = "status-on-hold";
+          break;
+        case "new":
+          style = "status-new";
           break;
         default:
           style = "status-active";
@@ -88,7 +94,7 @@ const Table = ({ list, title, className, link }) => {
                     column === "closedDate" && "text-center"
                   }`}
                 >
-                  <Link to={link && `${row["id"]}`}>
+                  <Link to={link && `${row["$id"]}`}>
                     {getCellValue(row, column)}
                   </Link>
                 </td>

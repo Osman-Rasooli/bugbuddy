@@ -31,8 +31,12 @@
 .status-inactive {
   color: #ff5252;
 }
-.status-progressing {
+.status-progressing,
+.status-in-progress {
   color: #87ceeb;
+}
+.status-new {
+  color: magenta;
 }
 .status-on-hold {
   color: #f39c12;

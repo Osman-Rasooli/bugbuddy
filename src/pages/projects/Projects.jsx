@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Table from "../../components/ui/table/Table";
 import { OutlinedButton } from "../../components/ui/button/Button";
-import { dummyProjects } from "../../data/data";
 import CreateProjectModal from "../../components/projectModal/CreateProjectModal";
+import { useProjects } from "../../contexts/projectsContext";
 
 const Projects = () => {
+  const { state } = useProjects();
+
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -21,9 +23,33 @@ const Projects = () => {
       <div className="flex justify-end px-4">
         <OutlinedButton onClick={openModal}>Add Project</OutlinedButton>
       </div>
-      <Table list={dummyProjects} title="Projects" link="projects" />
+      <Table
+        list={extractSpecificData(state.projects)}
+        title="Projects"
+        link="projects"
+      />
     </div>
   );
+};
+
+// Refactoring the received data into Table Component Compatible Data
+const extractSpecificData = (data) => {
+  const extractedData = data.map((document, index) => {
+    const { $id, name, description, status, priority, progress, createdBy } =
+      document;
+    return {
+      id: index + 1,
+      $id,
+      name,
+      description,
+      status,
+      priority,
+      progress,
+      createdBy,
+    };
+  });
+
+  return extractedData;
 };
 
 export default Projects;
