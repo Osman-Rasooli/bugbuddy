@@ -66,7 +66,7 @@ const BugsProvider = ({ children }) => {
         throw new Error("Failed to fetch projects");
       }
 
-      const bugsData = response.data.documents;
+      const bugsData = response.documents;
       dispatch({ type: "SET_BUGS", payload: bugsData });
     } catch (error) {
       dispatch({ type: "SET_ERROR", payload: error.message });
@@ -94,7 +94,7 @@ const BugsProvider = ({ children }) => {
 
   return (
     <BugsContext.Provider
-      value={{ state, dispatch, fetchBugs, addBug, updateBug, deleteBug }}
+      value={{ ...state, dispatch, fetchBugs, addBug, updateBug, deleteBug }}
     >
       {children}
     </BugsContext.Provider>

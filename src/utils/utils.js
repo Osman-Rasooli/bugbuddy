@@ -49,3 +49,17 @@ export function getColor(str) {
       return "";
   }
 }
+
+export const extractSpecificData = (data, fieldsToExtract) => {
+  const extractedData = data.map((document, index) => {
+    const extractedItem = {};
+    fieldsToExtract.forEach((field) => {
+      if (document.hasOwnProperty(field)) {
+        extractedItem[field] = document[field];
+      }
+    });
+    return { No: index + 1, ...extractedItem };
+  });
+
+  return extractedData;
+};

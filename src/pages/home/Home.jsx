@@ -1,9 +1,11 @@
 import CustomBarchart from "../../components/ui/customBarChart/CustomBarChart";
 import CustomPieChart from "../../components/ui/customPieChart/CustomPieChart";
 import Table from "../../components/ui/table/Table";
-import { dummyBugs } from "../../data/data";
 import { useMembers } from "../../contexts/membersContext";
 import { useProjects } from "../../contexts/projectsContext";
+import { useBugs } from "../../contexts/bugsContext";
+
+import { extractSpecificData } from "../../utils/utils";
 
 const Home = () => {
   const { members, loading: memberLoading } = useMembers();
@@ -13,15 +15,10 @@ const Home = () => {
     error: projectsError,
   } = useProjects();
 
-  const dataProjects = projects.map((project) => ({
-    name: project.name,
-    alias: project.alias,
-    bugs: project.bugs,
-    tasks: project.tasks,
-  }));
+  const { bugs, error: bugsError, loading: bugsLoading } = useBugs();
 
-  // Pie Chart Data Preparing
-  const priorityCounts = dummyBugs.reduce((acc, bug) => {
+  // Bugs Pie Chart Data Refactoring after fetching data
+  const priorityCounts = bugs.reduce((acc, bug) => {
     acc[bug.priority] = (acc[bug.priority] || 0) + 1;
     return acc;
   }, {});
@@ -31,12 +28,27 @@ const Home = () => {
     value: priorityCounts[priority],
   }));
 
+  // Members Table Data Refactoring after fetching data
+  const dataProjects = projects.map((project) => ({
+    name: project.name,
+    alias: project.alias,
+    bugs: project.bugs,
+    tasks: project.tasks,
+  }));
+
   return (
     <div className="text-whiteLight">
       <div className="flex flex-col md:flex-row gap-20 md:gap-5">
         {members && (
           <Table
-            list={extractSpecificData(members)}
+            list={extractSpecificData(members, [
+              "$id",
+              "name",
+              "status",
+              "email",
+              "role",
+              "currentDomain",
+            ])}
             title="Teams"
             className="max-h-[400px] flex-1"
             loading={memberLoading}
@@ -52,28 +64,15 @@ const Home = () => {
           loading={projectsLoading}
           error={projectsError}
         />
-        <CustomPieChart data={pieChartData} title="Bugs Overview" />
+        <CustomPieChart
+          data={pieChartData}
+          title="Bugs Overview"
+          loading={bugsLoading}
+          error={bugsError}
+        />
       </div>
     </div>
   );
-};
-
-// Refactoring the received data into Table Component Compatible Data
-const extractSpecificData = (data) => {
-  const extractedData = data.map((document, index) => {
-    const { $id, name, status, email, role, currentDomain } = document;
-    return {
-      No: index + 1,
-      $id,
-      name,
-      email,
-      status,
-      role,
-      currentDomain,
-    };
-  });
-
-  return extractedData;
 };
 
 export default Home;

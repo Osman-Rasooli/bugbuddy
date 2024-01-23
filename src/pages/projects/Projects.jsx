@@ -4,6 +4,8 @@ import { OutlinedButton } from "../../components/ui/button/Button";
 import CreateProjectModal from "../../components/projectModal/CreateProjectModal";
 import { useProjects } from "../../contexts/projectsContext";
 
+import { extractSpecificData } from "../../utils/utils";
+
 const Projects = () => {
   const { projects, loading } = useProjects();
   console.log(projects);
@@ -25,33 +27,21 @@ const Projects = () => {
         <OutlinedButton onClick={openModal}>Add Project</OutlinedButton>
       </div>
       <Table
-        list={extractSpecificData(projects)}
+        list={extractSpecificData(projects, [
+          "$id",
+          "name",
+          "description",
+          "status",
+          "priority",
+          "progress",
+          "createdBy",
+        ])}
         title="Projects"
         link="projects"
         loading={loading}
       />
     </div>
   );
-};
-
-// Refactoring the received data into Table Component Compatible Data
-const extractSpecificData = (data) => {
-  const extractedData = data.map((document, index) => {
-    const { $id, name, description, status, priority, progress, createdBy } =
-      document;
-    return {
-      No: index + 1,
-      $id,
-      name,
-      description,
-      status,
-      priority,
-      progress,
-      createdBy,
-    };
-  });
-
-  return extractedData;
 };
 
 export default Projects;
