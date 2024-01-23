@@ -15,4 +15,6 @@ export const projectsCollectionID =
 export const membersCollectionID =
   process.env.REACT_APP_APPWRITE_COLLECTION_MEMBERS;
 
+export const bugsCollectionID = process.env.REACT_APP_APPWRITE_COLLECTION_BUGS;
+
 export default client;
