@@ -1,13 +1,15 @@
 import { useState } from "react";
-
-import { dummyBugs } from "../../data/data";
 import { OutlinedButton } from "../../components/ui/button/Button";
+import { extractSpecificData } from "../../utils/utils";
 import Table from "../../components/ui/table/Table";
 import CustomBarChart from "../../components/ui/customBarChart/CustomBarChart";
 
 import CreateBugModal from "../../components/bugModal/CreateBugModal";
 
+import { useBugs } from "../../contexts/bugsContext";
+
 const Bugs = () => {
+  const { bugs, error: bugsError, loading: bugsLoading } = useBugs();
   // Create Bug Modal
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -19,12 +21,12 @@ const Bugs = () => {
     setModalOpen(false);
   };
 
-  const chartData = prepareDataForProjectStatusPriorityChart(dummyBugs);
+  const chartData = prepareDataForProjectStatusPriorityChart(bugs);
   const xAxisKey = "project";
   const barDataKeys = [
     "open",
     "resolved",
-    "progressing",
+    "in progress",
     "low",
     "medium",
     "high",
@@ -38,10 +40,19 @@ const Bugs = () => {
       </div>
       <div>
         <Table
-          list={dummyBugs}
+          list={extractSpecificData(bugs, [
+            "$id",
+            "name",
+            "project",
+            "assignedTo",
+            "priority",
+            "status",
+          ])}
           title="Bugs"
           link="bugs"
           className="max-h-[500px] flex-1"
+          error={bugsError}
+          loading={bugsLoading}
         />
       </div>
       <div className="">
@@ -73,7 +84,6 @@ const prepareDataForProjectStatusPriorityChart = (bugs) => {
       ...priority,
     })
   );
-
   return data;
 };
 

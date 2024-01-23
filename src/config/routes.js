@@ -20,6 +20,7 @@ const routes = () => {
         <Route path="/projects/:id" element={<Details />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/bugs" element={<Bugs />} />
+        <Route path="/bugs/:id" element={<Details />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
