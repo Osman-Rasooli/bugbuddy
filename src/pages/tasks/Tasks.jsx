@@ -6,7 +6,12 @@ import { OutlinedButton } from "../../components/ui/button/Button";
 import { dummyTasks } from "../../data/data";
 import CreateTaskModal from "../../components/taskModal/createTaskModal";
 
+import { useTasks } from "../../contexts/tasksContext";
+
 const Tasks = () => {
+  const state = useTasks();
+  console.log(state);
+
   // Create Task Modal
   const [isModalOpen, setModalOpen] = useState(false);
 

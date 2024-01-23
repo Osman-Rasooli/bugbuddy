@@ -2,13 +2,16 @@ import { AuthProvider } from "./authContext";
 import { ProjectsProvider } from "./projectsContext";
 import { MembersProvider } from "./membersContext";
 import { BugsProvider } from "./bugsContext";
+import { TasksProvider } from "./tasksContext";
 
 const ContextProviders = ({ children }) => {
   return (
     <AuthProvider>
       <ProjectsProvider>
         <MembersProvider>
-          <BugsProvider>{children}</BugsProvider>
+          <TasksProvider>
+            <BugsProvider>{children}</BugsProvider>
+          </TasksProvider>
         </MembersProvider>
       </ProjectsProvider>
     </AuthProvider>
