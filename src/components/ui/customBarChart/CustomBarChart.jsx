@@ -9,7 +9,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const CustomBarChart = ({ data, title, xAxisKey, dataKeys }) => {
+import Loader from "../loader/Loader";
+
+const CustomBarChart = ({
+  data,
+  title,
+  xAxisKey,
+  dataKeys,
+  loading,
+  error,
+}) => {
   const colors = [
     "#2ecc71",
     "#0066cc",
@@ -19,31 +28,44 @@ const CustomBarChart = ({ data, title, xAxisKey, dataKeys }) => {
     "#ffaa00",
     "#ff6347",
   ];
+
   return (
     <div className="w-full h-[400px] py-10 pb-14 mt-8 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
       <h3 className="text-tertiary mb-5 font-bold pl-4 uppercase">{title}</h3>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          width={500}
-          height={250}
-          data={data}
-          margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={xAxisKey} />
-          <YAxis />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          {dataKeys.map((dataKey, index) => (
-            <Bar
-              key={dataKey}
-              dataKey={dataKey}
-              fill={colors[index]}
-              barSize={25}
-            />
-          ))}
-        </BarChart>
-      </ResponsiveContainer>
+      {loading && (
+        <div className="h-full -mt-5 flex justify-center items-center">
+          <Loader />
+        </div>
+      )}
+      {error && (
+        <div className="h-full -mt-5 flex justify-center items-center">
+          <h2>No Data Found!</h2>
+        </div>
+      )}
+      {!loading && !error && data && (
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            width={500}
+            height={250}
+            data={data}
+            margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey={xAxisKey} />
+            <YAxis />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend />
+            {dataKeys.map((dataKey, index) => (
+              <Bar
+                key={dataKey}
+                dataKey={dataKey}
+                fill={colors[index]}
+                barSize={25}
+              />
+            ))}
+          </BarChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 };

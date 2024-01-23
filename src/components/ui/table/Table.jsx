@@ -2,10 +2,22 @@ import { icons } from "../../../data/data";
 import { Link } from "react-router-dom";
 import { trimString } from "../../../utils/utils";
 import ProgressBar from "../progressBar/ProgressBar";
+import Loader from "../../ui/loader/Loader";
 
-const Table = ({ list, title, className, link }) => {
+const Table = ({ list, title, className, link, loading }) => {
+  if (loading) {
+    return (
+      <div className="w-full h-32 flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
   if (!list || list.length === 0) {
-    return <h2>No data available</h2>;
+    return (
+      <div className="w-full h-32 flex justify-center items-center">
+        <h2>No data available</h2>
+      </div>
+    );
   }
 
   // Getting all the column Headings except the $id

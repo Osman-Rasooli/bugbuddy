@@ -5,7 +5,8 @@ import CreateProjectModal from "../../components/projectModal/CreateProjectModal
 import { useProjects } from "../../contexts/projectsContext";
 
 const Projects = () => {
-  const { state } = useProjects();
+  const { projects, loading } = useProjects();
+  console.log(projects);
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -24,9 +25,10 @@ const Projects = () => {
         <OutlinedButton onClick={openModal}>Add Project</OutlinedButton>
       </div>
       <Table
-        list={extractSpecificData(state.projects)}
+        list={extractSpecificData(projects)}
         title="Projects"
         link="projects"
+        loading={loading}
       />
     </div>
   );

@@ -12,4 +12,7 @@ export const databaseID = process.env.REACT_APP_APPWRITE_DATABASE;
 export const projectsCollectionID =
   process.env.REACT_APP_APPWRITE_COLLECTION_PROJECTS;
 
+export const membersCollectionID =
+  process.env.REACT_APP_APPWRITE_COLLECTION_MEMBERS;
+
 export default client;

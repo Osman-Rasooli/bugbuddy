@@ -10,13 +10,16 @@ import ProgressBar from "../../components/ui/progressBar/ProgressBar";
 
 const Details = () => {
   const { id } = useParams();
-  const {
-    state: { projects },
-  } = useProjects();
+  const { projects } = useProjects();
 
   const project = projects.filter((item) => item.$id === id)[0];
 
-  if (!project) return <h2 className="text-whiteLight">No Data Found!</h2>;
+  if (!project)
+    return (
+      <div className="w-full h-32 flex justify-center items-center">
+        <h2>No data Found</h2>
+      </div>
+    );
 
   return (
     <div className="text-whiteLight">

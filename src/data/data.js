@@ -10,7 +10,11 @@ import {
   FaRegFlag,
 } from "react-icons/fa";
 import { GoIssueOpened } from "react-icons/go";
-import { BsExclamationCircle, BsCheckCircle } from "react-icons/bs";
+import {
+  BsExclamationCircle,
+  BsCheckCircle,
+  BsPlusCircle,
+} from "react-icons/bs";
 import { AiOutlineWarning, AiOutlinePauseCircle } from "react-icons/ai";
 import { MdInfoOutline, MdCheckCircle, MdCancel } from "react-icons/md";
 import { BiRun } from "react-icons/bi";
@@ -188,12 +192,14 @@ export const icons = {
     completed: <BsCheckCircle />,
     "on hold": <AiOutlinePauseCircle />,
     progressing: <BiRun />,
+    "in progress": <BiRun />,
     active: <MdCheckCircle />,
     inactive: <MdCancel />,
     open: <MdInfoOutline />,
     review: <FaRegFlag />,
     closed: <BsCheckCircle />,
     resolved: <BsCheckCircle />,
+    new: <BsPlusCircle />,
   },
 };
 
