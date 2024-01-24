@@ -8,7 +8,6 @@ import { extractSpecificData } from "../../utils/utils";
 
 const Projects = () => {
   const { projects, loading } = useProjects();
-  console.log(projects);
 
   const [isModalOpen, setModalOpen] = useState(false);
 

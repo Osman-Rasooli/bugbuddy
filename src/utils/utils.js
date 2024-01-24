@@ -11,6 +11,8 @@ export function isValidEmail(email) {
 }
 
 export function formatDateStringToHumanReadable(dateString) {
+  if (!dateString) return false;
+
   // Create a Date object from the date string
   const dateObject = new Date(dateString);
 
