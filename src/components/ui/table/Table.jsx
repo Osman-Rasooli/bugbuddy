@@ -1,10 +1,13 @@
 import { icons } from "../../../data/data";
 import { Link } from "react-router-dom";
-import { trimString } from "../../../utils/utils";
+import {
+  trimString,
+  formatDateStringToHumanReadable,
+} from "../../../utils/utils";
 import ProgressBar from "../progressBar/ProgressBar";
 import Loader from "../../ui/loader/Loader";
 
-const Table = ({ list, title, className, link, loading }) => {
+const Table = ({ list, title, className, link, loading, error }) => {
   if (loading) {
     return (
       <div className="w-full h-32 flex justify-center items-center">
@@ -16,6 +19,13 @@ const Table = ({ list, title, className, link, loading }) => {
     return (
       <div className="w-full h-32 flex justify-center items-center">
         <h2>No data available</h2>
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="w-full h-32 flex justify-center items-center">
+        <h2>Something went wrong!</h2>
       </div>
     );
   }
@@ -37,6 +47,15 @@ const Table = ({ list, title, className, link, loading }) => {
     if (!value || value.length === 0) {
       value = " - ";
     }
+
+    if (column === "createdDate") {
+      value = (
+        <span className="block text-right text-whiteLight opacity-70">
+          {formatDateStringToHumanReadable(value)}
+        </span>
+      );
+    }
+
     if (column === "progress") {
       return (
         <ProgressBar progress={parseInt(value) || 0} className="h-[14px]" />

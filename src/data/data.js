@@ -423,11 +423,12 @@ export const colors = {
   medium: "#3498db",
   low: "#2ecc71",
   open: "#2ecc71",
-  progressing: "#87ceeb",
+  "in progress": "#87ceeb",
   review: "royalblue",
   closed: "#808080",
   resolved: "#0066cc",
   completed: "#0066cc",
+  new: "#9b59b6",
 };
 
 export const priorityList = ["critical", "high", "medium", "low"];

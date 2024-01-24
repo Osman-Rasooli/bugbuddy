@@ -17,8 +17,6 @@ const BugDetail = () => {
       </div>
     );
 
-  console.log(bug);
-
   return (
     <div className="px-4">
       {/* BUG NAME */}
