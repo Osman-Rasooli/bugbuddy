@@ -431,6 +431,13 @@ export const colors = {
   new: "#9b59b6",
 };
 
-export const priorityList = ["critical", "high", "medium", "low"];
+// export const priorityList = ["critical", "high", "medium", "low"];
 
 export const statusList = ["open", "progressing", "review", "resolved"];
+
+export const priorityList = [
+  { value: "critical", label: "Critical" },
+  { value: "high", label: "High" },
+  { value: "medium", label: "Medium" },
+  { value: "low", label: "Low" },
+];

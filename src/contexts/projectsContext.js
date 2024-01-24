@@ -12,6 +12,8 @@ import {
   databaseID,
 } from "../services/appwrite";
 
+import { ID } from "appwrite";
+
 const ProjectsContext = createContext();
 
 const projectsReducer = (state, action) => {
@@ -26,6 +28,16 @@ const projectsReducer = (state, action) => {
     case "SET_LOADING":
       return { ...state, loading: action.payload, error: null };
     case "SET_ERROR":
+      return { ...state, loading: false, error: action.payload };
+    case "CREATE_PROJECT_REQUEST":
+      return { ...state, loading: true, error: null };
+    case "CREATE_PROJECT_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        projects: [...state.projects, action.payload],
+      };
+    case "CREATE_PROJECT_FAILURE":
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
@@ -64,6 +76,40 @@ const ProjectsProvider = ({ children }) => {
     }
   }, [dispatch]);
 
+  const createProject = useCallback(
+    async (projectData) => {
+      try {
+        dispatch({ type: "CREATE_PROJECT_REQUEST" });
+
+        // Your Appwrite logic for creating a project
+        const response = await databases.createDocument(
+          databaseID,
+          projectsCollectionID,
+          ID.unique(),
+          {
+            ...projectData,
+            id: ID.unique(),
+            createdDate: new Date(),
+            createdBy: "Osman Rasooli",
+          }
+        );
+
+        console.log(response);
+
+        dispatch({
+          type: "CREATE_PROJECT_SUCCESS",
+          payload: response,
+        });
+      } catch (error) {
+        dispatch({
+          type: "CREATE_PROJECT_FAILURE",
+          payload: error.message,
+        });
+      }
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
     // Fetch projects when the user is logged in
     if (user) {
@@ -72,7 +118,9 @@ const ProjectsProvider = ({ children }) => {
   }, [user, fetchProjects]);
 
   return (
-    <ProjectsContext.Provider value={{ ...state, dispatch, fetchProjects }}>
+    <ProjectsContext.Provider
+      value={{ ...state, dispatch, fetchProjects, createProject }}
+    >
       {children}
     </ProjectsContext.Provider>
   );
