@@ -76,39 +76,31 @@ const ProjectsProvider = ({ children }) => {
     }
   }, [dispatch]);
 
-  const createProject = useCallback(
-    async (projectData) => {
-      try {
-        dispatch({ type: "CREATE_PROJECT_REQUEST" });
+  const createProject = async (projectData) => {
+    try {
+      dispatch({ type: "CREATE_PROJECT_REQUEST" });
 
-        // Your Appwrite logic for creating a project
-        const response = await databases.createDocument(
-          databaseID,
-          projectsCollectionID,
-          ID.unique(),
-          {
-            ...projectData,
-            id: ID.unique(),
-            createdDate: new Date(),
-            createdBy: "Osman Rasooli",
-          }
-        );
+      // Your Appwrite logic for creating a project
+      const response = await databases.createDocument(
+        databaseID,
+        projectsCollectionID,
+        ID.unique(),
+        projectData
+      );
 
-        console.log(response);
-
-        dispatch({
-          type: "CREATE_PROJECT_SUCCESS",
-          payload: response,
-        });
-      } catch (error) {
-        dispatch({
-          type: "CREATE_PROJECT_FAILURE",
-          payload: error.message,
-        });
-      }
-    },
-    [dispatch]
-  );
+      dispatch({
+        type: "CREATE_PROJECT_SUCCESS",
+        payload: response,
+      });
+      return true;
+    } catch (error) {
+      console.error(error);
+      dispatch({
+        type: "CREATE_PROJECT_FAILURE",
+        payload: error.message,
+      });
+    }
+  };
 
   useEffect(() => {
     // Fetch projects when the user is logged in

@@ -31,7 +31,7 @@ const ProjectDetail = () => {
           ( {project.alias} )
         </h4>
       </div>
-      <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
+      <div className="flex flex-col gap-8 lg:flex-row justify-between lg:gap-12">
         {/* DESCRIPTION */}
         <div className="left flex-5">
           <div className="mb-2">

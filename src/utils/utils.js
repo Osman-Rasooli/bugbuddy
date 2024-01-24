@@ -5,6 +5,19 @@ export function trimString(str, maxLength = 25) {
   return str;
 }
 
+export function uniqueID() {
+  // Generate a timestamp
+  const timestamp = new Date().getTime();
+
+  // Generate a random number (between 0 and 9999)
+  const randomNumber = Math.floor(Math.random() * 10000);
+
+  // Combine timestamp and random number to create a unique ID
+  const uniqueId = `${timestamp}${randomNumber}`;
+
+  return uniqueId;
+}
+
 export const formatDateForFormik = (date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
