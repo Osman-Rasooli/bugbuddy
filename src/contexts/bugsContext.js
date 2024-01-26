@@ -8,14 +8,24 @@ import {
 import { useAuth } from "./authContext";
 import { databases, databaseID, bugsCollectionID } from "../services/appwrite";
 
+import { ID, Query } from "appwrite";
+
 const BugsContext = createContext();
 
 const bugsReducer = (state, action) => {
   switch (action.type) {
     case "SET_BUGS":
       return { ...state, bugs: action.payload, loading: false, error: null };
-    case "ADD_BUG":
-      return { ...state, bugs: [...state.bugs, action.payload] };
+    case "CREATE_BUG_REQUEST":
+      return { ...state, loading: true, error: null };
+    case "CREATE_BUG_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        bugs: [action.payload, ...state.bugs],
+      };
+    case "CREATE_BUG_FAILURE":
+      return { ...state, loading: false, error: action.payload };
     case "UPDATE_BUG":
       return {
         ...state,
@@ -59,11 +69,12 @@ const BugsProvider = ({ children }) => {
       // Fetch bugs data from Appwrite
       const response = await databases.listDocuments(
         databaseID,
-        bugsCollectionID
+        bugsCollectionID,
+        [Query.orderDesc("createdDate")]
       );
 
       if (response.code < 200 || response.code > 300) {
-        throw new Error("Failed to fetch projects");
+        throw new Error("Failed to fetch Bugs");
       }
 
       const bugsData = response.documents;
@@ -73,9 +84,29 @@ const BugsProvider = ({ children }) => {
     }
   }, [user, dispatch]);
 
-  const addBug = (bug) => {
-    dispatch({ type: "ADD_BUG", payload: bug });
-  };
+  const createBug = useCallback(async (bugData) => {
+    try {
+      dispatch({ type: "CREATE_BUG_REQUEST" });
+
+      const response = await databases.createDocument(
+        databaseID,
+        bugsCollectionID,
+        ID.unique(),
+        bugData
+      );
+
+      console.log(response);
+
+      dispatch({
+        type: "CREATE_BUG_SUCCESS",
+        payload: response,
+      });
+      return true;
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: "CREATE_BUG_FAILURE", payload: error.message });
+    }
+  }, []);
 
   const updateBug = (bug) => {
     dispatch({ type: "UPDATE_BUG", payload: bug });
@@ -94,7 +125,7 @@ const BugsProvider = ({ children }) => {
 
   return (
     <BugsContext.Provider
-      value={{ ...state, dispatch, fetchBugs, addBug, updateBug, deleteBug }}
+      value={{ ...state, dispatch, fetchBugs, createBug, updateBug, deleteBug }}
     >
       {children}
     </BugsContext.Provider>

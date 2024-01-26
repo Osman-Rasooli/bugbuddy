@@ -97,7 +97,7 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
                   label="Related to Project"
                   id="project"
                   name="project"
-                  className="h-[35px]"
+                  className="h-[30px]"
                   options={projectsOptions}
                   as={CustomInput}
                 />
@@ -120,7 +120,7 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
                   label="Priority"
                   id="priority"
                   name="priority"
-                  className="h-[35px]"
+                  className="h-[30px]"
                   options={priorityList}
                   as={CustomInput}
                 />

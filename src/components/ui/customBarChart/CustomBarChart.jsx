@@ -23,7 +23,7 @@ const CustomBarChart = ({
     "#2ecc71",
     "#0066cc",
     "#87ceeb",
-    "#2ecc71",
+    "#6DBE45",
     "#3498db",
     "#ffaa00",
     "#ff6347",

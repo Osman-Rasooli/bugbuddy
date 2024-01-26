@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { OutlinedButton } from "../../components/ui/button/Button";
 import { extractSpecificData } from "../../utils/utils";
 import Table from "../../components/ui/table/Table";
@@ -9,7 +9,13 @@ import CreateBugModal from "../../components/bugModal/CreateBugModal";
 import { useBugs } from "../../contexts/bugsContext";
 
 const Bugs = () => {
-  const { bugs, error: bugsError, loading: bugsLoading } = useBugs();
+  const {
+    bugs,
+    error: bugsError,
+    loading: bugsLoading,
+    dispatch,
+    fetchBugs,
+  } = useBugs();
   // Create Bug Modal
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -32,6 +38,12 @@ const Bugs = () => {
     "high",
     "critical",
   ];
+
+  useEffect(() => {
+    // Fetch bugs when the component mounts
+    fetchBugs(dispatch);
+  }, [dispatch, fetchBugs]);
+
   return (
     <div className="text-whiteLight">
       <CreateBugModal isOpen={isModalOpen} onClose={closeModal} />

@@ -421,7 +421,7 @@ export const colors = {
   critical: "#ff6347",
   high: "#ffaa00",
   medium: "#3498db",
-  low: "#2ecc71",
+  low: "#6DBE45",
   open: "#2ecc71",
   "in progress": "#87ceeb",
   review: "royalblue",

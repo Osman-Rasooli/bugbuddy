@@ -12,7 +12,7 @@ import {
   databaseID,
 } from "../services/appwrite";
 
-import { ID } from "appwrite";
+import { ID, Query } from "appwrite";
 
 const ProjectsContext = createContext();
 
@@ -62,7 +62,8 @@ const ProjectsProvider = ({ children }) => {
       // Perform API request to fetch projects data from Appwrite
       const response = await databases.listDocuments(
         databaseID,
-        projectsCollectionID
+        projectsCollectionID,
+        [Query.orderDesc("createdDate")]
       );
 
       if (response.code < 200 || response.code > 300) {

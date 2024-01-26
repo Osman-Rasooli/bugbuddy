@@ -8,7 +8,7 @@ import {
 import { useAuth } from "./authContext";
 import { databases, databaseID, tasksCollectionID } from "../services/appwrite";
 
-import { ID } from "appwrite";
+import { ID, Query } from "appwrite";
 
 const TasksContext = createContext();
 
@@ -22,7 +22,7 @@ const tasksReducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        projects: [...state.tasks, action.payload],
+        tasks: [action.payload, ...state.tasks],
       };
     case "CREATE_TASK_FAILURE":
       return { ...state, loading: false, error: action.payload };
@@ -53,11 +53,12 @@ const TasksProvider = ({ children }) => {
       // Fetch tasks data from Appwrite
       const response = await databases.listDocuments(
         databaseID,
-        tasksCollectionID
+        tasksCollectionID,
+        [Query.orderDesc("createdDate")]
       );
 
       if (response.code < 200 || response.code > 300) {
-        throw new Error("Failed to fetch projects");
+        throw new Error("Failed to fetch Tasks");
       }
 
       const tasksData = response.documents;
@@ -67,7 +68,7 @@ const TasksProvider = ({ children }) => {
     }
   }, [user, dispatch]);
 
-  const createTask = async (taskData) => {
+  const createTask = useCallback(async (taskData) => {
     try {
       dispatch({ type: "CREATE_TASK_REQUEST" });
 
@@ -87,14 +88,14 @@ const TasksProvider = ({ children }) => {
       console.error(error);
       dispatch({ type: "CREATE_TASK_FAILURE", payload: error.message });
     }
-  };
+  }, []);
 
   useEffect(() => {
     // Fetch tasks when the user is logged in
     if (user) {
       fetchTasks();
     }
-  }, [user, fetchTasks]);
+  }, [user, fetchTasks, createTask]);
 
   return (
     <TasksContext.Provider
