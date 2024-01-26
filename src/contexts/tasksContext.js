@@ -8,13 +8,24 @@ import {
 import { useAuth } from "./authContext";
 import { databases, databaseID, tasksCollectionID } from "../services/appwrite";
 
+import { ID } from "appwrite";
+
 const TasksContext = createContext();
 
 const tasksReducer = (state, action) => {
   switch (action.type) {
     case "SET_TASKS":
       return { ...state, tasks: action.payload, loading: false, error: null };
-    // Add other task-related actions here if needed
+    case "CREATE_TASK_REQUEST":
+      return { ...state, loading: true, error: null };
+    case "CREATE_TASK_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        projects: [...state.tasks, action.payload],
+      };
+    case "CREATE_TASK_FAILURE":
+      return { ...state, loading: false, error: action.payload };
     default:
       return state;
   }
@@ -56,6 +67,28 @@ const TasksProvider = ({ children }) => {
     }
   }, [user, dispatch]);
 
+  const createTask = async (taskData) => {
+    try {
+      dispatch({ type: "CREATE_TASK_REQUEST" });
+
+      const response = await databases.createDocument(
+        databaseID,
+        tasksCollectionID,
+        ID.unique(),
+        taskData
+      );
+
+      dispatch({
+        type: "CREATE_TASK_SUCCESS",
+        payload: response,
+      });
+      return true;
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: "CREATE_TASK_FAILURE", payload: error.message });
+    }
+  };
+
   useEffect(() => {
     // Fetch tasks when the user is logged in
     if (user) {
@@ -64,7 +97,9 @@ const TasksProvider = ({ children }) => {
   }, [user, fetchTasks]);
 
   return (
-    <TasksContext.Provider value={{ ...state, dispatch, fetchTasks }}>
+    <TasksContext.Provider
+      value={{ ...state, dispatch, fetchTasks, createTask }}
+    >
       {children}
     </TasksContext.Provider>
   );

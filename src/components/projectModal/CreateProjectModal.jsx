@@ -28,10 +28,11 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
     user: { name: creator },
   } = useAuth();
 
+  // ADD TOAST FOR PROJECT ERRORS
   const {
     createProject,
     loading: projectLoading,
-    error: projectError,
+    // error: projectError,
   } = useProjects();
 
   const submitHandler = async (values) => {
