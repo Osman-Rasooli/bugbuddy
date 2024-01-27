@@ -7,6 +7,7 @@ import PageRoutes from "./config/routes";
 import Sidebar from "./components/sidebar/Sidebar";
 import Header from "./components/ui/header/Header";
 import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 
 import ContextProviders from "./contexts/contextProviders";
 
@@ -28,7 +29,7 @@ const App = () => {
             </div>
           }
         />
-        <Route path="/register" element={<h1>Register</h1>} />
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </ContextProviders>

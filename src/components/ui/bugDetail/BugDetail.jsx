@@ -49,20 +49,19 @@ const BugDetail = () => {
           </div>
           <div className="flex items-center justify-between gap-5 text-sm mb-4">
             <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
-              Updated Date:{" "}
-            </span>
-            <span>
-              {formatDateStringToHumanReadable(bug.updatedDate) || "-"}
-            </span>
-          </div>
-          <div className="flex items-center justify-between gap-5 text-sm mb-4">
-            <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
               Closed Date:{" "}
             </span>
             <span>
               {formatDateStringToHumanReadable(bug.closedDate) || "-"}
             </span>
           </div>
+          <div className="flex items-center justify-between gap-5 text-sm mb-4">
+            <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+              Due Date:{" "}
+            </span>
+            <span>{formatDateStringToHumanReadable(bug.dueDate) || "-"}</span>
+          </div>
+
           <hr className="text-tertiary opacity-40" />
           {/* PRIORITY / STATUS / PROGRESS */}
           <div className="flex items-center justify-between gap-5 text-sm my-4">
