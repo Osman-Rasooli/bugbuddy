@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -6,29 +6,57 @@ import logo from "../../assets/logo.png";
 
 import { links } from "../../data/data";
 
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+import { useSideDrawer } from "../../contexts/sideDrawerContext";
 
-  const toggleSidebar = () => {
-    setIsOpen((isOpen) => !isOpen);
-  };
+const Sidebar = () => {
+  const { toggleDrawer, isDrawerOpen, closeDrawer, openDrawer } =
+    useSideDrawer();
+
+  const drawerRef = useRef(null);
 
   useEffect(() => {
-    // Event listener to update the sidebar state when window is resized
+    // If the width is greater than the specified size it opens else closes
     const handleResize = () => {
-      setIsOpen(window.innerWidth > 1020);
+      if (window.innerWidth > 1024) {
+        openDrawer();
+      } else {
+        closeDrawer();
+      }
+    };
+
+    // Closing Side drawer when user clicks outside the sidebar when it is open
+    const handleClickOutside = (event) => {
+      if (window.innerWidth > 1024) return;
+      if (
+        drawerRef.current &&
+        isDrawerOpen &&
+        !drawerRef.current.contains(event.target)
+      ) {
+        closeDrawer();
+      }
     };
 
     window.addEventListener("resize", handleResize);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [closeDrawer, openDrawer, isDrawerOpen]);
+
+  // For smaller devices, the drawer is automatically open, this closes the drawer
+  useEffect(() => {
+    if (isDrawerOpen && window.innerWidth < 1024) {
+      closeDrawer();
+    }
+  }, [isDrawerOpen, closeDrawer]);
+
   return (
     <div
+      ref={drawerRef}
       className={`fixed inset-y-0 shadow-2xl left-0 z-50 ${
-        isOpen ? "translate-x-0" : "-translate-x-full"
+        isDrawerOpen ? "translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 ease-in-out w-64
        bg-secondary text-white overflow-y-auto`}
     >
@@ -52,10 +80,10 @@ const Sidebar = () => {
       </div>
 
       <button
-        className="md:hidden absolute top-6 right-5 text-white"
-        onClick={toggleSidebar}
+        className="lg:hidden absolute top-6 right-5 text-white"
+        onClick={toggleDrawer}
       >
-        {isOpen ? <FaTimes size={15} /> : <FaBars size={24} />}
+        {isDrawerOpen ? <FaTimes size={15} /> : <FaBars size={24} />}
       </button>
     </div>
   );
