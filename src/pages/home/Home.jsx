@@ -68,6 +68,34 @@ const Home = () => {
           />
         )}
       </div>
+      <div className="flex flex-row gap-3 md:gap-5 mt-7">
+        <div className="flex flex-col justify-center items-center py-7 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
+          <span className="block md:text-lg uppercase">Projects</span>
+          <span className="text-tertiary text-4xl md:text-6xl mt-2">
+            {projects.length}
+          </span>
+        </div>
+        <div className="flex flex-col justify-center items-center py-5 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
+          <span className="block md:text-lg uppercase text-center">
+            Members
+          </span>
+          <span className="text-tertiary text-4xl md:text-6xl mt-2">
+            {members.length}
+          </span>
+        </div>
+        <div className="flex flex-col justify-center items-center py-5 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
+          <span className="block md:text-lg uppercase">Tasks</span>
+          <span className="text-tertiary text-4xl md:text-6xl mt-2">
+            {tasks.length}
+          </span>
+        </div>
+        <div className="flex flex-col justify-center items-center py-5 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
+          <span className="block md:text-lg uppercase">Bugs</span>
+          <span className="text-tertiary text-4xl md:text-6xl mt-2">
+            {bugs.length}
+          </span>
+        </div>
+      </div>
       <div className="flex flex-col md:flex-row md:gap-5">
         <CustomBarchart
           data={resultBugsAndTasks}

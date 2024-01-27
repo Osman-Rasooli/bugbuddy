@@ -16,7 +16,7 @@ const Sidebar = () => {
   useEffect(() => {
     // Event listener to update the sidebar state when window is resized
     const handleResize = () => {
-      setIsOpen(window.innerWidth > 768);
+      setIsOpen(window.innerWidth > 1020);
     };
 
     window.addEventListener("resize", handleResize);
