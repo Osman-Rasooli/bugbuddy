@@ -80,3 +80,47 @@ export const extractSpecificData = (data, fieldsToExtract) => {
 
   return extractedData;
 };
+
+// Returns array of objects with project name and number of Tasks and Bugs
+export function countEntriesByProject(items, projectKey, name) {
+  const groupedItems = items.reduce((acc, item) => {
+    const projectValue = item[projectKey];
+    acc[projectValue] = acc[projectValue] || [];
+    acc[projectValue].push(item);
+    return acc;
+  }, {});
+
+  const resultArray = Object.entries(groupedItems).map(
+    ([projectValue, projectItems]) => ({
+      [projectKey]: projectValue,
+      [name]: projectItems.length,
+    })
+  );
+
+  return resultArray;
+}
+
+export function combineBugsAndTasks(bugsArr, tasksArr) {
+  const combinedItems = [...bugsArr, ...tasksArr];
+
+  const groupedItems = combinedItems.reduce((acc, item) => {
+    const projectValue = item.project;
+    acc[projectValue] = acc[projectValue] || {
+      project: projectValue,
+      tasks: 0,
+      bugs: 0,
+    };
+
+    // Increment the count based on the type of item
+    if (item.tasks) {
+      acc[projectValue].tasks += item.tasks;
+    } else if (item.bugs) {
+      acc[projectValue].bugs += item.bugs;
+    }
+
+    return acc;
+  }, {});
+
+  const resultArray = Object.values(groupedItems);
+  return resultArray;
+}
