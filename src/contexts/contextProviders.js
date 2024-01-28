@@ -7,17 +7,17 @@ import { SideDrawerProvider } from "./sideDrawerContext";
 
 const ContextProviders = ({ children }) => {
   return (
-    <AuthProvider>
-      <SideDrawerProvider>
-        <ProjectsProvider>
-          <MembersProvider>
+    <MembersProvider>
+      <AuthProvider>
+        <SideDrawerProvider>
+          <ProjectsProvider>
             <TasksProvider>
               <BugsProvider>{children}</BugsProvider>
             </TasksProvider>
-          </MembersProvider>
-        </ProjectsProvider>
-      </SideDrawerProvider>
-    </AuthProvider>
+          </ProjectsProvider>
+        </SideDrawerProvider>
+      </AuthProvider>
+    </MembersProvider>
   );
 };
 

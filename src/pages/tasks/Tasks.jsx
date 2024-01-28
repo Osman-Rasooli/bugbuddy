@@ -10,7 +10,6 @@ import { useTasks } from "../../contexts/tasksContext";
 
 const Tasks = () => {
   const { tasks, error: tasksError, loading: tasksLoading } = useTasks();
-  console.log(tasks);
 
   // Create Task Modal
   const [isModalOpen, setModalOpen] = useState(false);

@@ -7,33 +7,38 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../contexts/authContext";
+
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+
 import CustomInput from "../../components/ui/form/CustomInput";
+import { roleList } from "../../data/data";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
+  role: Yup.string().required("Selecta role"),
   password: Yup.string()
     .required("Password is required")
-    .min(6, "Password must be at least 6 characters"),
+    .min(8, "Password must be at least 8 characters"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Confirm Password is required"),
 });
 
 const Register = () => {
-  const { login, register, user } = useAuth();
+  const { register, user } = useAuth();
 
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
 
   const submitHandler = async (values, { setSubmitting, setStatus }) => {
+    console.log(values);
     try {
       setLoading(true);
       // Attempt to log in the user using the login function from AuthContext
-      await login(values.email, values.password);
+      await register(values);
       navigate("/");
     } catch (err) {
       console.error("Error during Login: ", err);
@@ -65,13 +70,13 @@ const Register = () => {
               name: "",
               email: "",
               password: "",
+              role: "",
               confirmPassword: "",
             }}
             validationSchema={validationSchema}
             onSubmit={submitHandler}
           >
             {({ status }) => {
-              console.log(status?.error);
               return (
                 <Form className="space-y-2" noValidate>
                   <div className="">
@@ -103,10 +108,7 @@ const Register = () => {
                       id="role"
                       name="role"
                       className="h-[30px] bg-whiteLight"
-                      options={[
-                        { value: "designer", label: "Designer" },
-                        { value: "developer", label: "Developer" },
-                      ]}
+                      options={roleList}
                       as={CustomInput}
                     />
                   </div>

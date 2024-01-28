@@ -441,3 +441,10 @@ export const priorityList = [
   { value: "medium", label: "Medium" },
   { value: "low", label: "Low" },
 ];
+
+export const roleList = [
+  { value: "", label: "Select a role" },
+  { value: "designer", label: "Designer" },
+  { value: "developer", label: "Developer" },
+  { value: "tester", label: "Tester" },
+];

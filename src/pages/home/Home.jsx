@@ -11,9 +11,10 @@ import {
   countEntriesByProject,
   combineBugsAndTasks,
 } from "../../utils/utils";
+import { useEffect } from "react";
 
 const Home = () => {
-  const { members, loading: memberLoading } = useMembers();
+  const { members, loading: memberLoading, fetchMembers } = useMembers();
   const {
     projects,
     loading: projectsLoading,
@@ -48,6 +49,12 @@ const Home = () => {
       }
     }
   });
+
+  useEffect(() => {
+    if (members.length === 0) {
+      fetchMembers();
+    }
+  }, [members.length, fetchMembers]);
 
   return (
     <div className="text-whiteLight">

@@ -5,18 +5,29 @@ import { ID } from "appwrite";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { account } from "../services/appwrite";
 
+import { useMembers } from "./membersContext";
+
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const login = async (email, password) => {
+  const { createMember, members } = useMembers();
+
+  const login = async (email, password, name, role) => {
     try {
+      const member = await members.filter((mem) => mem.email === email)[0];
+
+      console.log(member);
       await account.createEmailSession(email, password);
       const userAccount = await account.get();
-      setUser(userAccount);
-      // console.log(userAccount);
+      setUser({
+        ...userAccount,
+        name: member.name || name,
+        email: member.email || email,
+        role: member.role || role,
+      });
     } catch (error) {
       console.error("Login error:", error);
       throw error;
@@ -33,10 +44,11 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (email, password) => {
-    await account.create(ID.unique(), email, password);
-    await login(email, password);
+  const register = async ({ name, email, password, role }) => {
     try {
+      await account.create(ID.unique(), email, password);
+      await createMember({ name, email, role });
+      await login(email, password, name, role);
     } catch (error) {
       console.error("Register error:", error);
       throw error;

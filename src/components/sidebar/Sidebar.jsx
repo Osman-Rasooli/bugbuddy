@@ -45,19 +45,18 @@ const Sidebar = () => {
     };
   }, [closeDrawer, openDrawer, isDrawerOpen]);
 
-  // For smaller devices, the drawer is automatically open, this closes the drawer
-  useEffect(() => {
-    if (isDrawerOpen && window.innerWidth < 1024) {
-      closeDrawer();
-    }
-  }, [isDrawerOpen, closeDrawer]);
-
   // Opens the Side Drawer for the first time when the app is logged in and the device with is greater or equal to 1024px
   useEffect(() => {
     if (window.innerWidth >= 1024) {
       openDrawer();
     }
   }, []);
+
+  const handleSidebarClick = () => {
+    if (isDrawerOpen && window.innerWidth < 1024) {
+      closeDrawer();
+    }
+  };
 
   return (
     <div
@@ -77,6 +76,7 @@ const Sidebar = () => {
               <NavLink
                 to={link.to}
                 className="link flex gap-3 justify-start items-center font-normal py-2 px-2 rounded-sm transition "
+                onClick={handleSidebarClick}
               >
                 {link.icon}
                 {link.name}

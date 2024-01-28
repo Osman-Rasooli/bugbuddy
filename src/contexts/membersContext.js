@@ -1,7 +1,6 @@
 import React, {
   createContext,
   useReducer,
-  useEffect,
   useContext,
   useCallback,
 } from "react";
@@ -11,7 +10,9 @@ import {
   databaseID,
 } from "../services/appwrite";
 
-import { useAuth } from "./authContext";
+import { uniqueID } from "../utils/utils";
+
+import { ID } from "appwrite";
 
 // Define initial state
 const initialState = {
@@ -24,6 +25,9 @@ const initialState = {
 const SET_MEMBERS = "SET_MEMBERS";
 const SET_LOADING = "SET_LOADING";
 const SET_ERROR = "SET_ERROR";
+const CREATE_MEMBER_REQUEST = "CREATE_MEMEBER_REQUEST";
+const CREATE_MEMBER_SUCCESS = "CREATE_MEMEBER_SUCCESS";
+const CREATE_MEMBER_FAILURE = "CREATE_MEMEBER_FAILURE";
 
 // Define reducer function
 const membersReducer = (state, action) => {
@@ -47,6 +51,24 @@ const membersReducer = (state, action) => {
         loading: false,
         error: action.payload,
       };
+    case CREATE_MEMBER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case CREATE_MEMBER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        members: [action.payload, ...state.members],
+      };
+    case CREATE_MEMBER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
@@ -58,8 +80,6 @@ const MembersContext = createContext();
 // Create context provider component
 const MembersProvider = ({ children }) => {
   const [state, dispatch] = useReducer(membersReducer, initialState);
-
-  const { user } = useAuth();
 
   const fetchMembers = useCallback(async () => {
     try {
@@ -77,28 +97,36 @@ const MembersProvider = ({ children }) => {
     }
   }, [dispatch]);
 
-  // Fetch members data from Appwrite and update state
-  useEffect(() => {
-    if (user) {
-      fetchMembers();
-    }
-  }, [user, fetchMembers]); // Run this effect only once when the component mounts
+  const createMember = useCallback(
+    async (memberData) => {
+      try {
+        dispatch({ type: CREATE_MEMBER_REQUEST });
 
+        const response = await databases.createDocument(
+          databaseID,
+          membersCollectionID,
+          ID.unique(),
+          { id: uniqueID(), ...memberData }
+        );
+
+        dispatch({ type: CREATE_MEMBER_SUCCESS, payload: response });
+      } catch (error) {
+        dispatch({ type: CREATE_MEMBER_FAILURE, payload: error.message });
+      }
+    },
+    [dispatch]
+  );
   return (
-    <MembersContext.Provider value={{ ...state, fetchMembers }}>
+    <MembersContext.Provider value={{ ...state, fetchMembers, createMember }}>
       {children}
     </MembersContext.Provider>
   );
 };
 
 const useMembers = () => {
-  const { members, loading, error } = useContext(MembersContext);
+  const context = useContext(MembersContext);
 
-  return {
-    members,
-    loading,
-    error,
-  };
+  return context;
 };
 
 export { useMembers, MembersProvider };
