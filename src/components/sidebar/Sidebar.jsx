@@ -52,6 +52,13 @@ const Sidebar = () => {
     }
   }, [isDrawerOpen, closeDrawer]);
 
+  // Opens the Side Drawer for the first time when the app is logged in and the device with is greater or equal to 1024px
+  useEffect(() => {
+    if (window.innerWidth >= 1024) {
+      openDrawer();
+    }
+  }, []);
+
   return (
     <div
       ref={drawerRef}
