@@ -24,9 +24,9 @@ const AuthProvider = ({ children }) => {
       const userAccount = await account.get();
       setUser({
         ...userAccount,
-        name: member.name || name,
-        email: member.email || email,
-        role: member.role || role,
+        name: member?.name || name,
+        email: member?.email || email,
+        role: member?.role || role,
       });
     } catch (error) {
       console.error("Login error:", error);
