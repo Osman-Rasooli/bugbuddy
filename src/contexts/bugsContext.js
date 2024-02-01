@@ -33,10 +33,19 @@ const bugsReducer = (state, action) => {
           bug.id === action.payload.id ? action.payload : bug
         ),
       };
-    case "DELETE_BUG":
+    case "DELETE_BUG_REQUEST":
+      return { ...state, loading: true, error: null };
+    case "DELETE_BUG_SUCCESS":
       return {
         ...state,
-        bugs: state.bugs.filter((bug) => bug.id !== action.payload),
+        tasks: state.bugs.filter((bug) => bug.$id !== action.payload),
+        loading: false,
+      };
+    case "DELETE_BUG_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     case "SET_LOADING":
       return { ...state, loading: action.payload, error: null };
@@ -112,8 +121,20 @@ const BugsProvider = ({ children }) => {
     dispatch({ type: "UPDATE_BUG", payload: bug });
   };
 
-  const deleteBug = (bugId) => {
-    dispatch({ type: "DELETE_BUG", payload: bugId });
+  const deleteBug = async (bugId) => {
+    try {
+      dispatch({ type: "DELETE_BUG_REQUEST" });
+
+      await databases.deleteDocument(databaseID, bugsCollectionID, bugId);
+
+      // Dispatch the delete action to update the state
+      dispatch({ type: "DELETE_BUG_SUCCESS", payload: bugId });
+      return { success: true, error: null };
+    } catch (error) {
+      console.error("Error deleting bug:", error);
+      dispatch({ type: "DELETE_BUG_FAILURE", payload: error.message });
+      return { success: false, error: "Could not delete the bug." };
+    }
   };
 
   useEffect(() => {

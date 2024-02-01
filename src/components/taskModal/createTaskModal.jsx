@@ -24,7 +24,7 @@ const validationSchema = Yup.object().shape({
     .min(new Date(), "Due Date must be in the future"),
 });
 
-const CreateProjectModal = ({ isOpen, onClose }) => {
+const CreateTaskModal = ({ isOpen, onClose }) => {
   const { projects } = useProjects();
   const {
     user: { name: creator },
@@ -152,4 +152,4 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default CreateProjectModal;
+export default CreateTaskModal;

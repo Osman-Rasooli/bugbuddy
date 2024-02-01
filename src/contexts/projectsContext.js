@@ -35,10 +35,26 @@ const projectsReducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        projects: [...state.projects, action.payload],
+        projects: [action.payload, ...state.projects],
       };
     case "CREATE_PROJECT_FAILURE":
       return { ...state, loading: false, error: action.payload };
+    case "DELETE_PROJECT_REQUEST":
+      return { ...state, loading: true, error: null };
+    case "DELETE_PROJECT_SUCCESS":
+      return {
+        ...state,
+        projects: state.projects.filter(
+          (project) => project.$id !== action.payload
+        ),
+        loading: false,
+      };
+    case "DELETE_PROJECT_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
@@ -66,18 +82,21 @@ const ProjectsProvider = ({ children }) => {
         [Query.orderDesc("createdDate")]
       );
 
+      console.log(response, "aaaaa");
+
       if (response.code < 200 || response.code > 300) {
         throw new Error("Failed to fetch projects");
       }
 
       const projectsData = response.documents;
       dispatch({ type: "SET_PROJECTS", payload: projectsData });
+      dispatch({ type: "SET_LOADING", payload: false });
     } catch (error) {
       dispatch({ type: "SET_ERROR", payload: error.message });
     }
   }, [dispatch]);
 
-  const createProject = async (projectData) => {
+  const createProject = useCallback(async (projectData) => {
     try {
       dispatch({ type: "CREATE_PROJECT_REQUEST" });
 
@@ -89,10 +108,15 @@ const ProjectsProvider = ({ children }) => {
         projectData
       );
 
+      if (response.code < 200 || response.code > 300) {
+        throw new Error("Failed to fetch Tasks");
+      }
+
       dispatch({
         type: "CREATE_PROJECT_SUCCESS",
         payload: response,
       });
+
       return true;
     } catch (error) {
       console.error(error);
@@ -101,18 +125,45 @@ const ProjectsProvider = ({ children }) => {
         payload: error.message,
       });
     }
+  }, []);
+
+  const deleteProject = async (projectId) => {
+    try {
+      dispatch({ type: "DELETE_PROJECT_REQUEST" });
+
+      await databases.deleteDocument(
+        databaseID,
+        projectsCollectionID,
+        projectId
+      );
+
+      // Dispatch the delete action to update the state
+      dispatch({ type: "DELETE_PROJECT_SUCCESS", payload: projectId });
+      return { success: true, error: null };
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      dispatch({ type: "DELETE_PROJECT_FAILURE", payload: error.message });
+      return { success: false, error: "Could not delete the project." };
+    }
   };
 
   useEffect(() => {
     // Fetch projects when the user is logged in
     if (user) {
+      console.log("inside UseEffect");
       fetchProjects();
     }
-  }, [user, fetchProjects]);
+  }, [user, fetchProjects, createProject]);
 
   return (
     <ProjectsContext.Provider
-      value={{ ...state, dispatch, fetchProjects, createProject }}
+      value={{
+        ...state,
+        dispatch,
+        fetchProjects,
+        createProject,
+        deleteProject,
+      }}
     >
       {children}
     </ProjectsContext.Provider>

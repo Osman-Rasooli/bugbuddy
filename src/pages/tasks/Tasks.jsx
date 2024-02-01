@@ -4,7 +4,8 @@ import Table from "../../components/ui/table/Table";
 import CustomPieChart from "../../components/ui/customPieChart/CustomPieChart";
 import { OutlinedButton } from "../../components/ui/button/Button";
 import { extractSpecificData } from "../../utils/utils";
-import CreateTaskModal from "../../components/taskModal/createTaskModal";
+
+import CreateTaskModal from "../../components/taskModal/CreateTaskModal";
 
 import { useTasks } from "../../contexts/tasksContext";
 

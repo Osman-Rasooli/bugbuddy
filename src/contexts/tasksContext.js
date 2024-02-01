@@ -26,6 +26,20 @@ const tasksReducer = (state, action) => {
       };
     case "CREATE_TASK_FAILURE":
       return { ...state, loading: false, error: action.payload };
+    case "DELETE_TASK_REQUEST":
+      return { ...state, loading: true, error: null };
+    case "DELETE_TASK_SUCCESS":
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.$id !== action.payload),
+        loading: false,
+      };
+    case "DELETE_TASK_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
@@ -90,6 +104,22 @@ const TasksProvider = ({ children }) => {
     }
   }, []);
 
+  const deleteTask = async (taskId) => {
+    try {
+      dispatch({ type: "DELETE_TASK_REQUEST" });
+
+      await databases.deleteDocument(databaseID, tasksCollectionID, taskId);
+
+      // Dispatch the delete action to update the state
+      dispatch({ type: "DELETE_TASK_SUCCESS", payload: taskId });
+      return { success: true, error: null };
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      dispatch({ type: "DELETE_TASK_FAILURE", payload: error.message });
+      return { success: false, error: "Could not delete the task." };
+    }
+  };
+
   useEffect(() => {
     // Fetch tasks when the user is logged in
     if (user) {
@@ -99,7 +129,7 @@ const TasksProvider = ({ children }) => {
 
   return (
     <TasksContext.Provider
-      value={{ ...state, dispatch, fetchTasks, createTask }}
+      value={{ ...state, dispatch, fetchTasks, createTask, deleteTask }}
     >
       {children}
     </TasksContext.Provider>
