@@ -433,7 +433,7 @@ export const colors = {
 
 // export const priorityList = ["critical", "high", "medium", "low"];
 
-export const statusList = ["open", "progressing", "review", "resolved"];
+// export const statusList = ["open", "progressing", "review", "resolved"];
 
 export const priorityList = [
   { value: "critical", label: "Critical" },
@@ -447,4 +447,12 @@ export const roleList = [
   { value: "designer", label: "Designer" },
   { value: "developer", label: "Developer" },
   { value: "tester", label: "Tester" },
+];
+
+export const statusList = [
+  { value: "new", label: "New" },
+  { value: "open", label: "Open" },
+  { value: "in progress", label: "In Progress" },
+  { value: "review", label: "Review" },
+  { value: "resolved", label: "Resolved" },
 ];

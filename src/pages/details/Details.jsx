@@ -10,13 +10,15 @@ import ProjectDetail from "../../components/ui/projectDetail/ProjectDetail";
 import BugDetail from "../../components/ui/bugDetail/BugDetail";
 import TaskDetail from "../../components/ui/taskDetail/TaskDetail";
 
-import DeleteTaskModal from "../../components/taskModal/DeleteTaskModal";
-
+import DeleteModal from "../../components/deleteModal/DeleteModal";
+import UpdateModal from "../../components/updateModal/UpdateModal";
 const Details = () => {
   const location = useLocation();
   const pagePath = location.pathname.split("/")[1];
 
   const [isModalOpen, setModalOpen] = useState(false);
+
+  const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
@@ -28,7 +30,11 @@ const Details = () => {
 
   return (
     <div className="text-whiteLight">
-      <DeleteTaskModal isOpen={isModalOpen} onClose={closeModal} />
+      <DeleteModal isOpen={isModalOpen} onClose={closeModal} />
+      <UpdateModal
+        isOpen={isUpdateModalOpen}
+        onClose={() => setUpdateModalOpen(false)}
+      />
 
       <div className="flex justify-center gap-2 md:justify-end px-4 mb-6 lg:mb-0">
         <Link to={`/${pagePath}`}>
@@ -38,7 +44,10 @@ const Details = () => {
           </OutlinedButton>
         </Link>
 
-        <OutlinedButton className="flex gap-1 items-center">
+        <OutlinedButton
+          onClick={() => setUpdateModalOpen(true)}
+          className="flex gap-1 items-center"
+        >
           <IoIosCreate /> Update
         </OutlinedButton>
 

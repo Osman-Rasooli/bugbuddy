@@ -25,6 +25,21 @@ export const formatDateForFormik = (date) => {
   return `${year}-${month}-${day}`;
 };
 
+export const formatAppwriteDateForFormik = (appwriteDateString) => {
+  // Parse the Appwrite date string into a JavaScript Date object
+  const dateObject = new Date(appwriteDateString);
+
+  // Extract date components
+  const year = dateObject.getFullYear();
+  const month = String(dateObject.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+  const day = String(dateObject.getDate()).padStart(2, "0");
+
+  // Format the date string for Formik (e.g., 'yyyy-MM-dd')
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
+};
+
 export function formatDateStringToHumanReadable(dateString) {
   if (!dateString) return false;
 

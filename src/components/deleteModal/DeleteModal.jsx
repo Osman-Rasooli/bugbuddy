@@ -3,11 +3,11 @@ import Button, { OutlinedButton } from "../ui/button/Button";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { useTasks } from "../../contexts/tasksContext";
 import { useBugs } from "../../contexts/bugsContext";
+import { useTasks } from "../../contexts/tasksContext";
 import { useProjects } from "../../contexts/projectsContext";
 
-const DeleteTaskModal = ({ isOpen, onClose }) => {
+const DeleteModal = ({ isOpen, onClose }) => {
   const location = useLocation();
   const navigate = useNavigate();
   let [type, id] = location.pathname.split("/").slice(1);
@@ -59,4 +59,4 @@ const DeleteTaskModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default DeleteTaskModal;
+export default DeleteModal;
