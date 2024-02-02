@@ -26,12 +26,25 @@ const bugsReducer = (state, action) => {
       };
     case "CREATE_BUG_FAILURE":
       return { ...state, loading: false, error: action.payload };
-    case "UPDATE_BUG":
+    case "UPDATE_BUG_REQUEST":
       return {
         ...state,
+        loading: true,
+        error: null,
+      };
+    case "UPDATE_BUG_SUCCESS":
+      return {
+        ...state,
+        loading: false,
         bugs: state.bugs.map((bug) =>
-          bug.id === action.payload.id ? action.payload : bug
+          bug.$id === action.payload.id ? action.payload.response : bug
         ),
+      };
+    case "UPDATE_BUG_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     case "DELETE_BUG_REQUEST":
       return { ...state, loading: true, error: null };
@@ -104,8 +117,6 @@ const BugsProvider = ({ children }) => {
         bugData
       );
 
-      console.log(response);
-
       dispatch({
         type: "CREATE_BUG_SUCCESS",
         payload: response,
@@ -117,8 +128,26 @@ const BugsProvider = ({ children }) => {
     }
   }, []);
 
-  const updateBug = (bug) => {
-    dispatch({ type: "UPDATE_BUG", payload: bug });
+  const updateBug = async (id, bugData) => {
+    try {
+      dispatch({ type: "UPDATE_BUG_REQUEST" });
+
+      const response = await databases.updateDocument(
+        databaseID,
+        bugsCollectionID,
+        id,
+        bugData
+      );
+
+      dispatch({
+        type: "UPDATE_BUG_SUCCESS",
+        payload: { id, response },
+      });
+      return true;
+    } catch (error) {
+      dispatch({ type: "UPDATE_BUG_FAILURE", payload: error.message });
+      return { success: false, error: "Could not update the bug." };
+    }
   };
 
   const deleteBug = async (bugId) => {

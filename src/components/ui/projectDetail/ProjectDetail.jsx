@@ -23,7 +23,7 @@ const ProjectDetail = () => {
   return (
     <div className="px-4">
       {/* PROJECT NAME / ALIAS */}
-      <div className="flex flex-col md:flex-row gap-2 items-center mb-8">
+      <div className="flex flex-col md:flex-row gap-2 items-center mt-5 mb-8">
         <h2 className="text-tertiary leading-7 text-xl font-bold uppercase text-center">
           {project.name}
         </h2>
@@ -33,13 +33,13 @@ const ProjectDetail = () => {
       </div>
       <div className="flex flex-col gap-8 lg:flex-row justify-between lg:gap-12">
         {/* DESCRIPTION */}
-        <div className="left flex-5">
+        <div className="left">
           <div className="mb-2">
             <h2 className="text-tertiary text-lg mb-[5px]">Description:</h2>
             <p>{project.description}</p>
           </div>
         </div>
-        <div className="right flex-1 lg:max-w-[300px]">
+        <div className="right basis-[300px] mt-5">
           {/* CREATED BY / CREATED DATE / DUE DATE */}
           <div className="flex items-center justify-between gap-5 text-sm mb-4">
             <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">

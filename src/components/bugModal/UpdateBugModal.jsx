@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const UpdateBugModal = ({ id, isOpen, onClose }) => {
-  const { bugs } = useBugs();
+  const { bugs, updateBug } = useBugs();
   const { projects } = useProjects();
   const { fetchMembers, members } = useMembers();
 
@@ -60,7 +60,12 @@ const UpdateBugModal = ({ id, isOpen, onClose }) => {
     fetchData();
   }, [fetchMembers]);
 
-  console.log(bug.dueDate);
+  const submitHandler = async (values) => {
+    const response = await updateBug(bug.$id, values);
+    if (response) {
+      onClose();
+    }
+  };
 
   return (
     <div>
@@ -76,7 +81,7 @@ const UpdateBugModal = ({ id, isOpen, onClose }) => {
           assignedTo: bug.assignedTo?.toLowerCase(),
         }}
         validationSchema={validationSchema}
-        onSubmit={() => {}}
+        onSubmit={submitHandler}
       >
         <Form className="space-y-2 py-4">
           <div className="flex flex-col md:flex-row gap-5 mb-3">

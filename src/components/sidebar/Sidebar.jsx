@@ -17,7 +17,7 @@ const Sidebar = () => {
   useEffect(() => {
     // If the width is greater than the specified size it opens else closes
     const handleResize = () => {
-      if (window.innerWidth > 1024) {
+      if (window.innerWidth >= 1024) {
         openDrawer();
       } else {
         closeDrawer();

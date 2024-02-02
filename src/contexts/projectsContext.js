@@ -82,8 +82,6 @@ const ProjectsProvider = ({ children }) => {
         [Query.orderDesc("createdDate")]
       );
 
-      console.log(response, "aaaaa");
-
       if (response.code < 200 || response.code > 300) {
         throw new Error("Failed to fetch projects");
       }
@@ -150,7 +148,6 @@ const ProjectsProvider = ({ children }) => {
   useEffect(() => {
     // Fetch projects when the user is logged in
     if (user) {
-      console.log("inside UseEffect");
       fetchProjects();
     }
   }, [user, fetchProjects, createProject]);
