@@ -64,18 +64,18 @@ const Sidebar = () => {
       className={`fixed inset-y-0 shadow-2xl left-0 z-50 ${
         isDrawerOpen ? "translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 ease-in-out w-64
-       bg-secondary text-white overflow-y-auto`}
+       bg-white dark:bg-secondary transition-100 text-secondary dark:text-white overflow-y-auto`}
     >
       <div className="p-6 py-10">
         <div className="">
           <img src={logo} alt="BugBuddy" className="w-2/3" />
         </div>
-        <ul className="mt-6 text-whiteLight">
+        <ul className="mt-6 text-secondary dark:text-whiteLight">
           {links.map((link, index) => (
             <li key={index}>
               <NavLink
                 to={link.to}
-                className="link flex gap-3 justify-start items-center font-normal py-2 px-2 rounded-sm transition "
+                className="hover:bg-whiteLight dark:hover:bg-secondaryLight flex gap-3 justify-start items-center font-normal py-2 px-2 rounded-sm transition "
                 onClick={handleSidebarClick}
               >
                 {link.icon}

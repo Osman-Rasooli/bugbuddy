@@ -56,7 +56,7 @@ const Register = () => {
   }, [user, navigate]);
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 pt-14 lg:px-8 register-page">
+      <div className="flex min-h-screen dark:bg-primary dark:text-white flex-1 flex-col justify-center px-6 pt-14 lg:px-8 register-page">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img className="mx-auto h-10 w-auto" src={logo} alt="BugBuddy" />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -87,7 +87,7 @@ const Register = () => {
                       name="name"
                       placeholder="John Doe"
                       as={CustomInput}
-                      className="block login bg-white w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-whiteLight  focus:outline-none   focus:ring-tertiary sm:text-sm sm:leading-6"
+                      className="block text-secondary login bg-white w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-whiteLight  focus:outline-none   focus:ring-tertiary sm:text-sm sm:leading-6"
                     />
                   </div>
                   <div className="">
@@ -98,7 +98,7 @@ const Register = () => {
                       name="email"
                       placeholder="example@xyz.com"
                       as={CustomInput}
-                      className="block login bg-white w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-whiteLight  focus:outline-none   focus:ring-tertiary sm:text-sm sm:leading-6"
+                      className="block text-secondary login bg-white w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-whiteLight  focus:outline-none   focus:ring-tertiary sm:text-sm sm:leading-6"
                     />
                   </div>
                   <div className="">
@@ -107,7 +107,7 @@ const Register = () => {
                       label="Role"
                       id="role"
                       name="role"
-                      className="h-[30px] bg-whiteLight"
+                      className="h-[30px] text-secondary bg-whiteLight"
                       options={roleList}
                       as={CustomInput}
                     />
@@ -119,7 +119,7 @@ const Register = () => {
                       id="password"
                       name="password"
                       placeholder="********"
-                      className="block login bg-white w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-whiteLight  focus:outline-none   focus:ring-tertiary sm:text-sm sm:leading-6"
+                      className="block login text-secondary bg-white w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-whiteLight  focus:outline-none   focus:ring-tertiary sm:text-sm sm:leading-6"
                       as={CustomInput}
                     />
                     {/* {status && status.error && (
@@ -136,7 +136,7 @@ const Register = () => {
                       id="confirmPassword"
                       name="confirmPassword"
                       placeholder="********"
-                      className="block login bg-white w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-whiteLight  focus:outline-none   focus:ring-tertiary sm:text-sm sm:leading-6"
+                      className="block login text-secondary bg-white w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-whiteLight  focus:outline-none   focus:ring-tertiary sm:text-sm sm:leading-6"
                       as={CustomInput}
                     />
                   </div>
