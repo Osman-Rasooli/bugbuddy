@@ -137,7 +137,7 @@ const UpdateBugModal = ({ id, isOpen, onClose }) => {
               label="Bug Description"
               id="description"
               name="description"
-              placeholder="Project description..."
+              placeholder="Bug description..."
               as={CustomTextarea}
             />
           </div>

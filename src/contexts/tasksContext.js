@@ -26,6 +26,26 @@ const tasksReducer = (state, action) => {
       };
     case "CREATE_TASK_FAILURE":
       return { ...state, loading: false, error: action.payload };
+    case "UPDATE_TASK_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "UPDATE_TASK_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        tasks: state.tasks.map((task) =>
+          task.$id === action.payload.id ? action.payload.response : task
+        ),
+      };
+    case "UPDATE_TASK_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case "DELETE_TASK_REQUEST":
       return { ...state, loading: true, error: null };
     case "DELETE_TASK_SUCCESS":
@@ -104,6 +124,28 @@ const TasksProvider = ({ children }) => {
     }
   }, []);
 
+  const updateTask = async (id, taskData) => {
+    try {
+      dispatch({ type: "UPDATE_TASK_REQUEST" });
+
+      const response = await databases.updateDocument(
+        databaseID,
+        tasksCollectionID,
+        id,
+        taskData
+      );
+
+      dispatch({
+        type: "UPDATE_TASK_SUCCESS",
+        payload: { id, response },
+      });
+      return true;
+    } catch (error) {
+      dispatch({ type: "UPDATE_TASK_FAILURE", payload: error.message });
+      return { success: false, error: "Could not update the task." };
+    }
+  };
+
   const deleteTask = async (taskId) => {
     try {
       dispatch({ type: "DELETE_TASK_REQUEST" });
@@ -129,7 +171,14 @@ const TasksProvider = ({ children }) => {
 
   return (
     <TasksContext.Provider
-      value={{ ...state, dispatch, fetchTasks, createTask, deleteTask }}
+      value={{
+        ...state,
+        dispatch,
+        fetchTasks,
+        createTask,
+        updateTask,
+        deleteTask,
+      }}
     >
       {children}
     </TasksContext.Provider>
