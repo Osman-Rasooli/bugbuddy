@@ -39,6 +39,26 @@ const projectsReducer = (state, action) => {
       };
     case "CREATE_PROJECT_FAILURE":
       return { ...state, loading: false, error: action.payload };
+    case "UPDATE_PROJECT_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "UPDATE_PROJECT_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        projects: state.projects.map((project) =>
+          project.$id === action.payload.id ? action.payload.response : project
+        ),
+      };
+    case "UPDATE_PROJECT_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case "DELETE_PROJECT_REQUEST":
       return { ...state, loading: true, error: null };
     case "DELETE_PROJECT_SUCCESS":
@@ -125,6 +145,28 @@ const ProjectsProvider = ({ children }) => {
     }
   }, []);
 
+  const updateProject = async (id, projectData) => {
+    try {
+      dispatch({ type: "UPDATE_PROJECT_REQUEST" });
+
+      const response = await databases.updateDocument(
+        databaseID,
+        projectsCollectionID,
+        id,
+        projectData
+      );
+
+      dispatch({
+        type: "UPDATE_PROJECT_SUCCESS",
+        payload: { id, response },
+      });
+      return true;
+    } catch (error) {
+      dispatch({ type: "UPDATE_PROJECT_FAILURE", payload: error.message });
+      return { success: false, error: "Could not update the project." };
+    }
+  };
+
   const deleteProject = async (projectId) => {
     try {
       dispatch({ type: "DELETE_PROJECT_REQUEST" });
@@ -159,6 +201,7 @@ const ProjectsProvider = ({ children }) => {
         dispatch,
         fetchProjects,
         createProject,
+        updateProject,
         deleteProject,
       }}
     >

@@ -16,12 +16,12 @@ import * as Yup from "yup";
 import { useEffect } from "react";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Bug Name is required!"),
-  description: Yup.string().required("Bug Description is required"),
+  name: Yup.string().required("Task Name is required!"),
+  description: Yup.string().required("Task Description is required"),
   priority: Yup.string(""),
   project: Yup.string("").required("Select a Project"),
   dueDate: Yup.date()
-    .required("Bug Due Date is required!")
+    .required("Task Due Date is required!")
     .min(new Date(), "Due Date must be in the future"),
 });
 
