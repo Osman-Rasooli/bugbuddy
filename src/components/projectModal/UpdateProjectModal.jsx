@@ -33,6 +33,8 @@ const validationSchema = Yup.object().shape({
 const UpdateProjectModal = ({ id, isOpen, onClose }) => {
   const { projects, updateProject, loading: projectLoading } = useProjects();
   const { fetchMembers, members } = useMembers();
+  const user = useAuth();
+  console.log(user);
 
   const project = projects.filter((project) => project.$id === id)[0];
 
@@ -63,8 +65,8 @@ const UpdateProjectModal = ({ id, isOpen, onClose }) => {
   };
 
   return (
-    <div>
-      <h2 className="text-tertiary border-b-[1px] pb-2">Update Bug</h2>
+    <div className="">
+      <h2 className="text-tertiary border-b-[1px] pb-2">Update Project</h2>
       <Formik
         initialValues={{
           name: project.name,

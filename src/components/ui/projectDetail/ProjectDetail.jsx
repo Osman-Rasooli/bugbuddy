@@ -5,6 +5,8 @@ import {
 
 import ProgressBar from "../progressBar/ProgressBar";
 import { useProjects } from "../../../contexts/projectsContext";
+import { useBugs } from "../../../contexts/bugsContext";
+import { useTasks } from "../../../contexts/tasksContext";
 
 import { useParams } from "react-router-dom";
 
@@ -13,6 +15,16 @@ const ProjectDetail = () => {
   const { projects } = useProjects();
 
   const project = projects.filter((item) => item.$id === id)[0];
+
+  const { bugs } = useBugs();
+  const { tasks } = useTasks();
+
+  // Preparing data for Number of bugs and tasks related to specific project
+  const projectBugs = bugs.filter((bug) => bug.project === project?.name);
+  const ProjectTasks = tasks.filter((task) => task.project === project?.name);
+
+  const bugsCount = projectBugs.length;
+  const tasksCount = ProjectTasks.length;
 
   if (!project)
     return (
@@ -60,6 +72,14 @@ const ProjectDetail = () => {
             <span>{formatDateStringToHumanReadable(project.dueDate)}</span>
           </div>
           <hr className="text-tertiary opacity-40" />
+          {/* PROJECT MANAGER */}
+          <div className="flex items-center justify-between gap-5 text-sm my-4">
+            <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+              Project Manager:{" "}
+            </span>
+            <span>{project.manager || "-"}</span>
+          </div>
+          <hr className="text-tertiary opacity-40" />
           {/* PRIORITY / STATUS / PROGRESS */}
           <div className="flex items-center justify-between gap-5 text-sm my-4">
             <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
@@ -104,7 +124,7 @@ const ProjectDetail = () => {
               <span
                 className={`uppercase block py-[0.5px] text-whiteLight font-bold rounded-sm shadow-sm pr-[7px] text-[12px]`}
               >
-                {project.tasks}
+                {tasksCount}
               </span>
             </div>
             <div className="flex items-center gap-2 text-sm border-[1px] border-tertiary rounded-sm">
@@ -114,7 +134,7 @@ const ProjectDetail = () => {
               <span
                 className={`uppercase block py-[0.5px] text-whiteLight font-bold rounded-sm shadow-sm pr-[7px] text-[12px] `}
               >
-                {project.bugs}
+                {bugsCount}
               </span>
             </div>
           </div>

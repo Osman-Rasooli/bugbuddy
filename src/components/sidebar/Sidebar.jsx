@@ -26,7 +26,7 @@ const Sidebar = () => {
 
     // Closing Side drawer when user clicks outside the sidebar when it is open
     const handleClickOutside = (event) => {
-      if (window.innerWidth > 1024) return;
+      if (window.innerWidth >= 1024) return;
       if (
         drawerRef.current &&
         isDrawerOpen &&

@@ -69,7 +69,7 @@ const UpdateTaskModal = ({ id, isOpen, onClose }) => {
 
   return (
     <div>
-      <h2 className="text-tertiary border-b-[1px] pb-2">Update Bug</h2>
+      <h2 className="text-tertiary border-b-[1px] pb-2">Update Task</h2>
       <Formik
         initialValues={{
           name: task.name,
