@@ -22,7 +22,10 @@ const AvatarDropdown = () => {
           type="button"
           className="flex items-center justify-center h-12 w-12 rounded-full text-white focus:outline-none hover:bg-secondaryLight transition"
         >
-          <FaUser size={24} className="border-[1px] rounded-full" />
+          <FaUser
+            size={26}
+            className="bg-[#343423] border-[#343423] border-[1px] rounded-full"
+          />
         </button>
       </div>
 

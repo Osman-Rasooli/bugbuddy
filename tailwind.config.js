@@ -15,6 +15,7 @@ module.exports = {
       tertiaryLight: "#f48ca4",
       white: "#e5e5e5",
       whiteLight: "#ddd",
+      whiteBg: "#dcdcdc",
       tags: {
         critical: "#ff6347",
         high: "#ffaa00",

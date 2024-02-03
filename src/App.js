@@ -18,7 +18,7 @@ const App = () => {
         <Route
           path="/*"
           element={
-            <div className="flex h-screen bg-primary">
+            <div className="flex h-screen bg-whiteBg dark:bg-primary">
               <Sidebar />
               <div className="flex-1 flex flex-col lg:ml-64 overflow-hidden">
                 <Header title="Home" />
