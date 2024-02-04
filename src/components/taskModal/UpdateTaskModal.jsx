@@ -3,7 +3,6 @@ import CustomTextarea from "../ui/form/CustomTextarea";
 import CustomInput from "../ui/form/CustomInput";
 
 import { useTasks } from "../../contexts/tasksContext";
-import { useAuth } from "../../contexts/authContext";
 import { useProjects } from "../../contexts/projectsContext";
 import { useMembers } from "../../contexts/membersContext";
 

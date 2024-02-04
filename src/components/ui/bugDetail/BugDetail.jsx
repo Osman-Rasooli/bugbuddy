@@ -3,12 +3,20 @@ import {
   getColor,
 } from "../../../utils/utils";
 import { useBugs } from "../../../contexts/bugsContext";
+import { useAuth } from "../../../contexts/authContext";
 import { useParams } from "react-router-dom";
-const BugDetail = () => {
+const BugDetail = ({ setIsAssignedTo }) => {
   const { id } = useParams();
   const { bugs } = useBugs();
+  const { user } = useAuth();
 
   const bug = bugs.filter((item) => item.$id === id)[0];
+
+  if (bug.assignedTo === user.name) {
+    setIsAssignedTo(true);
+  }
+
+  // console.log({ bug, user });
 
   if (!bug)
     return (

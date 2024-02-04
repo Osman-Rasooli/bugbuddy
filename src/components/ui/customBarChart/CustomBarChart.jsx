@@ -30,7 +30,7 @@ const CustomBarChart = ({
   ];
 
   return (
-    <div className="w-full h-[400px] py-10 pb-14 mt-8 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
+    <div className="w-full h-[400px] py-10 pb-14 mt-8 border-[0.5px] bg-white dark:bg-secondary transition  rounded-md border-secondaryLight shadow-sm shadow-secondary dark:shadow-white">
       <h3 className="text-tertiary mb-5 font-bold pl-4 uppercase">{title}</h3>
       {loading && (
         <div className="h-full -mt-5 flex justify-center items-center">

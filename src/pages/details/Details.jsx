@@ -3,6 +3,8 @@ import { OutlinedButton } from "../../components/ui/button/Button";
 
 import { useState } from "react";
 
+import { useAuth } from "../../contexts/authContext";
+
 import { IoIosArrowBack, IoIosCreate } from "react-icons/io";
 import { AiOutlineDelete } from "react-icons/ai";
 
@@ -12,13 +14,16 @@ import TaskDetail from "../../components/ui/taskDetail/TaskDetail";
 
 import DeleteModal from "../../components/deleteModal/DeleteModal";
 import UpdateModal from "../../components/updateModal/UpdateModal";
+
 const Details = () => {
+  const { user } = useAuth();
+  // console.log(user.labels?.includes("admin"));
   const location = useLocation();
   const pagePath = location.pathname.split("/")[1];
 
   const [isModalOpen, setModalOpen] = useState(false);
-
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
+  const [isAssignedTo, setIsAssignedTo] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
@@ -27,6 +32,15 @@ const Details = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  let content;
+  if (pagePath === "projects") {
+    content = <ProjectDetail />;
+  } else if (pagePath === "bugs") {
+    content = <BugDetail setIsAssignedTo={setIsAssignedTo} />;
+  } else {
+    content = <TaskDetail setIsAssignedTo={setIsAssignedTo} />;
+  }
 
   return (
     <div className="text-whiteLight">
@@ -44,20 +58,30 @@ const Details = () => {
           </OutlinedButton>
         </Link>
 
-        <OutlinedButton
-          onClick={() => setUpdateModalOpen(true)}
-          className="flex gap-1 items-center"
-        >
-          <IoIosCreate /> Update
-        </OutlinedButton>
+        {/* Only ADMIN and MANAGER can UPDATE items */}
+        {(user.labels?.includes("admin") || isAssignedTo) && (
+          <OutlinedButton
+            onClick={() => setUpdateModalOpen(true)}
+            className="flex gap-1 items-center"
+          >
+            <IoIosCreate /> Update
+          </OutlinedButton>
+        )}
 
-        <OutlinedButton onClick={openModal} className="flex gap-1 items-center">
-          <AiOutlineDelete /> Delete
-        </OutlinedButton>
+        {/* Only ADMIN and MANAGER can DELETE items */}
+        {user.labels?.includes("admin") && (
+          <OutlinedButton
+            onClick={openModal}
+            className="flex gap-1 items-center"
+          >
+            <AiOutlineDelete /> Delete
+          </OutlinedButton>
+        )}
       </div>
-      {pagePath === "projects" && <ProjectDetail />}
-      {pagePath === "bugs" && <BugDetail />}
-      {pagePath === "tasks" && <TaskDetail />}
+      {/* {pagePath === "projects" && <ProjectDetail />} */}
+      {/* {pagePath === "bugs" && <BugDetail />} */}
+      {/* {pagePath === "tasks" && <TaskDetail />} */}
+      {content}
     </div>
   );
 };

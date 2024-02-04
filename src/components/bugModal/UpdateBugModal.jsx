@@ -3,7 +3,6 @@ import CustomTextarea from "../ui/form/CustomTextarea";
 import CustomInput from "../ui/form/CustomInput";
 
 import { useBugs } from "../../contexts/bugsContext";
-import { useAuth } from "../../contexts/authContext";
 import { useProjects } from "../../contexts/projectsContext";
 import { useMembers } from "../../contexts/membersContext";
 
@@ -26,7 +25,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const UpdateBugModal = ({ id, isOpen, onClose }) => {
-  const { bugs, updateBug } = useBugs();
+  const { bugs, updateBug, loading: bugLoading } = useBugs();
   const { projects } = useProjects();
   const { fetchMembers, members } = useMembers();
 
@@ -61,6 +60,7 @@ const UpdateBugModal = ({ id, isOpen, onClose }) => {
   }, [fetchMembers]);
 
   const submitHandler = async (values) => {
+    console.log(values);
     const response = await updateBug(bug.$id, values);
     if (response) {
       onClose();
@@ -172,8 +172,7 @@ const UpdateBugModal = ({ id, isOpen, onClose }) => {
               type="submit"
               className="border-none text-sm flex-1 md:flex-none font-bold"
             >
-              {/* {bugLoading ? "Creating Bug..." : "Report Bug"} */}
-              Update
+              {bugLoading ? "Updating Bug..." : "Update"}
             </Button>
           </div>
         </Form>

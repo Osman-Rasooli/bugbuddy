@@ -75,14 +75,14 @@ const Home = () => {
           />
         )}
       </div>
-      <div className="flex flex-row gap-3 md:gap-5 mt-7">
-        <div className="flex flex-col justify-center items-center py-7 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
+      <div className="flex flex-row gap-3 text-secondary dark:text-white md:gap-5 mt-7">
+        <div className="flex flex-col justify-center items-center bg-white dark:bg-secondary hover:bg-whiteBg dark:hover:bg-primary transition py-7 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-secondaryLight dark:shadow-white">
           <span className="block md:text-lg uppercase">Projects</span>
           <span className="text-tertiary text-4xl md:text-6xl mt-2">
             {projects.length}
           </span>
         </div>
-        <div className="flex flex-col justify-center items-center py-5 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
+        <div className="flex flex-col justify-center items-center bg-white dark:bg-secondary hover:bg-whiteBg dark:hover:bg-primary transition py-5 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-secondaryLight dark:shadow-white">
           <span className="block md:text-lg uppercase text-center">
             Members
           </span>
@@ -90,13 +90,13 @@ const Home = () => {
             {members.length}
           </span>
         </div>
-        <div className="flex flex-col justify-center items-center py-5 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
+        <div className="flex flex-col justify-center items-center bg-white dark:bg-secondary hover:bg-whiteBg dark:hover:bg-primary transition py-5 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-secondaryLight dark:shadow-white">
           <span className="block md:text-lg uppercase">Tasks</span>
           <span className="text-tertiary text-4xl md:text-6xl mt-2">
             {tasks.length}
           </span>
         </div>
-        <div className="flex flex-col justify-center items-center py-5 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-white">
+        <div className="flex flex-col justify-center items-center bg-white dark:bg-secondary hover:bg-whiteBg dark:hover:bg-primary transition py-5 px-2 md:px-5 flex-1 border-[0.5px]  rounded-md border-secondaryLight shadow-sm shadow-secondaryLight dark:shadow-white">
           <span className="block md:text-lg uppercase">Bugs</span>
           <span className="text-tertiary text-4xl md:text-6xl mt-2">
             {bugs.length}

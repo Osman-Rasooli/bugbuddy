@@ -4,11 +4,18 @@ import {
 } from "../../../utils/utils";
 import { useTasks } from "../../../contexts/tasksContext";
 import { useParams } from "react-router-dom";
-const TaskDetail = () => {
+import { useAuth } from "../../../contexts/authContext";
+
+const TaskDetail = ({ setIsAssignedTo }) => {
   const { id } = useParams();
   const { tasks } = useTasks();
+  const { user } = useAuth();
 
   const task = tasks.filter((item) => item.$id === id)[0];
+
+  if (task.assignedTo === user.name) {
+    setIsAssignedTo(true);
+  }
 
   if (!task) {
     return (

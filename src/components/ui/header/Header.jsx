@@ -15,7 +15,6 @@ const Header = ({ title }) => {
     toggleTheme,
     state: { isDarkMode },
   } = useTheme();
-  console.log(isDarkMode);
   let heading = pathname === "/" ? "home" : pathname.split("/")[1];
 
   const themeBtn = isDarkMode ? (

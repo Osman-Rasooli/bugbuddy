@@ -19,7 +19,6 @@ const AuthProvider = ({ children }) => {
     try {
       const member = await members.filter((mem) => mem.email === email)[0];
 
-      console.log(member);
       await account.createEmailSession(email, password);
       const userAccount = await account.get();
       setUser({

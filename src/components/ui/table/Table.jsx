@@ -50,7 +50,7 @@ const Table = ({ list, title, className, link, loading, error }) => {
 
     if (column === "createdDate") {
       value = (
-        <span className="block text-right text-whiteLight opacity-70">
+        <span className="block text-right text-secondary dark:text-whiteLight opacity-70">
           {formatDateStringToHumanReadable(value)}
         </span>
       );
@@ -66,46 +66,27 @@ const Table = ({ list, title, className, link, loading, error }) => {
     if (Object.keys(icons).includes(column)) {
       return (
         <div
-          className={`flex items-center gap-2 ${column}-${value.replaceAll(
+          className={`flex items-center justify-center gap-[5px] font-normal bg-[#fff] dark:bg-[#191919] rounded-sm ${column}-${value.replaceAll(
             " ",
             "-"
           )}`}
         >
           <span>{icons[column][value]}</span>
-          <span className=" font-light capitalize">{value}</span>
+          <span className=" capitalize">{value}</span>
         </div>
       );
     }
-    let style = "";
-    if (column === "status") {
-      switch (value) {
-        case "inactive":
-          style = "status-inactive";
-          break;
-        case "in progress":
-          style = "status-in-progress";
-          break;
-        case "on hold":
-          style = "status-on-hold";
-          break;
-        case "new":
-          style = "status-new";
-          break;
-        default:
-          style = "status-active";
-      }
-    }
 
     // Return the original value if no special handling is required
-    return <span className={style}>{trimString(value)}</span>;
+    return <span className="font-normal">{trimString(value)}</span>;
   };
   return (
     <div className={`overflow-y-auto ${className}`}>
-      <h3 className=" text-tertiary inline-block font-medium text-xl p-3 bg-secondary">
+      <h3 className=" text-tertiary inline-block font-medium text-xl p-3  dark:bg-secondary">
         {title}
       </h3>
-      <table className=" overflow-x-auto w-full border-[0.5px] rounded cursor-pointer  border-secondaryLight divide-y divide-whiteLight">
-        <thead className="bg-secondaryLight sticky top-0">
+      <table className=" overflow-x-auto w-full border-[0.5px] rounded cursor-pointer border-secondary transition bg-white dark:bg-secondary text-secondary dark:text-white  dark:border-secondaryLight divide-y divide-secondaryLight dark:divide-whiteLight">
+        <thead className="bg-whiteBg dark:bg-secondaryLight sticky top-0">
           <tr>
             {columns.map((column) => (
               <th key={column} className="py-2 px-4 text-left capitalize">
@@ -118,12 +99,12 @@ const Table = ({ list, title, className, link, loading, error }) => {
           {list.map((row, index) => (
             <tr
               key={index}
-              className="font-thin whitespace-nowrap border-b-[0.5px] hover:text-[#fff] border-secondaryLight hover:bg-secondaryLight"
+              className=" font-extrabold whitespace-nowrap border-b-[0.5px] hover:text-secondary dark:hover:text-[#fff] border-secondaryLight hover:bg-whiteBg dark:hover:bg-secondaryLight"
             >
               {columns.map((column) => (
                 <td
                   key={column}
-                  className={`py-2 px-4 font-normal ${
+                  className={`py-2 px-4 font-extrabold ${
                     column === "closedDate" && "text-center"
                   }`}
                 >
