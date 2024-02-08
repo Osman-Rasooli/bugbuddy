@@ -77,7 +77,7 @@ const BugDetail = ({ setIsAssignedTo }) => {
               Status:{" "}
             </span>
             <span
-              className={`uppercase block py-[0.5px] text-primary font-bold rounded-sm shadow-sm px-[4px] text-[12px] ${getColor(
+              className={`uppercase block py-[0.5px] text-white font-bold rounded-sm shadow-sm px-[4px] text-[12px] ${getColor(
                 bug.status
               )}`}
             >
@@ -89,7 +89,7 @@ const BugDetail = ({ setIsAssignedTo }) => {
               Priority:{" "}
             </span>
             <span
-              className={`uppercase block py-[0.5px] text-primary font-bold rounded-sm shadow-sm px-[4px] text-[12px] ${getColor(
+              className={`uppercase block py-[0.5px] text-white font-bold rounded-sm shadow-sm px-[4px] text-[12px] ${getColor(
                 bug.priority
               )}`}
             >
