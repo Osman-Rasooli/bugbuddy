@@ -13,7 +13,7 @@ const TaskDetail = ({ setIsAssignedTo }) => {
 
   const task = tasks.filter((item) => item.$id === id)[0];
 
-  if (task.assignedTo === user.name) {
+  if (task?.assignedTo === user.name) {
     setIsAssignedTo(true);
   }
 

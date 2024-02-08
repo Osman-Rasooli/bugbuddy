@@ -12,7 +12,7 @@ const BugDetail = ({ setIsAssignedTo }) => {
 
   const bug = bugs.filter((item) => item.$id === id)[0];
 
-  if (bug.assignedTo === user.name) {
+  if (bug?.assignedTo === user.name) {
     setIsAssignedTo(true);
   }
 
@@ -101,7 +101,7 @@ const BugDetail = ({ setIsAssignedTo }) => {
             <span className=" bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
               Assigned To:{" "}
             </span>
-            <span>{bug.assignedTo || "-"}</span>
+            <span>{bug?.assignedTo || "-"}</span>
           </div>
         </div>
       </div>

@@ -24,7 +24,7 @@ const CustomField = ({ label, id, type, options, className, ...props }) => {
       {type === "select" ? (
         <select
           {...inputProps}
-          className={`w-full bg-secondary px-2 py-1 text-sm rounded-sm outline-none ${className}`}
+          className={`w-full bg-white dark:bg-secondary px-2 py-1 text-sm rounded-sm outline-none ${className}`}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -35,7 +35,7 @@ const CustomField = ({ label, id, type, options, className, ...props }) => {
       ) : (
         <input
           {...inputProps}
-          className={`w-full bg-secondary px-2 py-1 text-sm rounded-sm outline-none ${className}`}
+          className={`w-full bg-white dark:bg-secondary px-2 py-1 text-sm rounded-sm outline-none ${className}`}
         />
       )}
       {meta.touched && meta.error && (

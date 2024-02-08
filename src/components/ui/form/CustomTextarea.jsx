@@ -13,7 +13,7 @@ const CustomTextArea = ({ label, id, ...props }) => {
         rows={5}
         {...field}
         {...props}
-        className={`w-full bg-secondary px-2 py-1 text-sm rounded-sm outline-none`}
+        className={`w-full bg-white dark:bg-secondary px-2 py-1 text-sm rounded-sm outline-none`}
       />
       {meta.touched && meta.error && (
         <div className="text-tertiary text-sm mt-1 flex items-center">

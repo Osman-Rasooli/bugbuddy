@@ -83,7 +83,7 @@ const UpdateBugModal = ({ id, isOpen, onClose }) => {
         validationSchema={validationSchema}
         onSubmit={submitHandler}
       >
-        <Form className="space-y-2 py-4">
+        <Form className="space-y-2 py-4 text-secondary dark:text-white">
           <div className="flex flex-col md:flex-row gap-5 mb-3">
             <div className="flex-1">
               <Field

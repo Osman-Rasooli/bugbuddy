@@ -63,7 +63,7 @@ const DeleteModal = ({ isOpen, onClose }) => {
 
         <div className="mt-4 flex justify-end gap-4">
           <OutlinedButton onClick={onClose}>Cancel</OutlinedButton>
-          <Button onClick={handleDelete} className="border-0 outline-none">
+          <Button onClick={handleDelete} className="border-none">
             Confirm
           </Button>
         </div>
