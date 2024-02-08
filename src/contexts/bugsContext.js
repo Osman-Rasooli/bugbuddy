@@ -51,7 +51,7 @@ const bugsReducer = (state, action) => {
     case "DELETE_BUG_SUCCESS":
       return {
         ...state,
-        tasks: state.bugs.filter((bug) => bug.$id !== action.payload),
+        bugs: state.bugs.filter((bug) => bug.$id !== action.payload),
         loading: false,
       };
     case "DELETE_BUG_FAILURE":
@@ -121,10 +121,11 @@ const BugsProvider = ({ children }) => {
         type: "CREATE_BUG_SUCCESS",
         payload: response,
       });
-      return true;
+      return { success: true, message: "Created Bug Successfully!" };
     } catch (error) {
       console.error(error);
       dispatch({ type: "CREATE_BUG_FAILURE", payload: error.message });
+      return { success: false, message: "Could not create bug" };
     }
   }, []);
 
@@ -143,7 +144,7 @@ const BugsProvider = ({ children }) => {
         type: "UPDATE_BUG_SUCCESS",
         payload: { id, response },
       });
-      return true;
+      return { success: true, message: "Updated Bug Successfully!" };
     } catch (error) {
       dispatch({ type: "UPDATE_BUG_FAILURE", payload: error.message });
       return { success: false, error: "Could not update the bug." };

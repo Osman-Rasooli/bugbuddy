@@ -3,6 +3,8 @@ import Button from "../ui/button/Button";
 import CustomInput from "../ui/form/CustomInput";
 import CustomTextarea from "../ui/form/CustomTextarea";
 
+import { useToast } from "../../contexts/toastContext";
+
 import { formatDateForFormik, uniqueID } from "../../utils/utils";
 
 import { priorityList } from "../../data/data.js";
@@ -28,6 +30,8 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
     user: { name: creator },
   } = useAuth();
 
+  const { addToast } = useToast();
+
   // ADD TOAST FOR PROJECT ERRORS
   const {
     createProject,
@@ -45,7 +49,10 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
     const response = await createProject(values);
     if (response) {
       onClose();
+      addToast({ type: "success", message: "Created Project Successfully!" });
+      return;
     }
+    addToast({ type: "fail", message: "Something went wrong!" });
   };
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

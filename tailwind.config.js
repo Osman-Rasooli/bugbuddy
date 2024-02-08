@@ -18,9 +18,11 @@ module.exports = {
       whiteBg: "#ccc",
       tags: {
         critical: "#ff6347",
+        fail: "#ff6347",
         high: "#ffaa00",
         medium: "#3498db",
         low: "#6DBE45",
+        success: "#2ecc71",
         open: "#2ecc71",
         "in-progress": "#87ceeb",
         review: "royalblue",

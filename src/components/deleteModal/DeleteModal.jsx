@@ -6,23 +6,34 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useBugs } from "../../contexts/bugsContext";
 import { useTasks } from "../../contexts/tasksContext";
 import { useProjects } from "../../contexts/projectsContext";
+import { useToast } from "../../contexts/toastContext";
+import { useState, useEffect } from "react";
 
 const DeleteModal = ({ isOpen, onClose }) => {
+  const [itemId, setItemId] = useState("");
+
   const location = useLocation();
   const navigate = useNavigate();
-  let [type, id] = location.pathname.split("/").slice(1);
+  const { addToast } = useToast();
+  let [type] = location.pathname.split("/").slice(1);
 
   const { tasks, deleteTask } = useTasks();
   const { bugs, deleteBug } = useBugs();
   const { projects, deleteProject } = useProjects();
 
+  useEffect(() => {
+    // Set type and id when the component mounts or location changes
+    const pathParts = location.pathname.split("/").slice(1);
+    setItemId(pathParts[1]);
+  }, [location.pathname]);
+
   let result;
   if (type === "tasks") {
-    result = tasks.filter((task) => task.$id === id)[0];
+    result = tasks.filter((task) => task.$id === itemId)[0];
   } else if (type === "bugs") {
-    result = bugs.filter((bug) => bug.$id === id)[0];
+    result = bugs.filter((bug) => bug.$id === itemId)[0];
   } else {
-    result = projects.filter((project) => project.$id === id)[0];
+    result = projects.filter((project) => project.$id === itemId)[0];
   }
 
   const handleDelete = async () => {
@@ -35,10 +46,12 @@ const DeleteModal = ({ isOpen, onClose }) => {
       res = await deleteProject(result.$id);
     }
 
-    if (res.error) {
-      alert(res.error);
-    }
     navigate(`/${type}`);
+    if (res.error) {
+      addToast({ type: "fail", message: "Could not delete item!" });
+      return;
+    }
+    addToast({ type: "success", message: "Deleted Succcessfully!" });
   };
 
   return (

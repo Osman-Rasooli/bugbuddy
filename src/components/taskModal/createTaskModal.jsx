@@ -3,6 +3,8 @@ import Button from "../ui/button/Button";
 import CustomInput from "../ui/form/CustomInput";
 import CustomTextarea from "../ui/form/CustomTextarea";
 
+import { useToast } from "../../contexts/toastContext";
+
 import { formatDateForFormik, uniqueID } from "../../utils/utils";
 
 import { Formik, Form, Field } from "formik";
@@ -29,6 +31,8 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
   const {
     user: { name: creator },
   } = useAuth();
+
+  const { addToast } = useToast();
 
   // ADD TOAST FOR TASK ERRORS
   const {
@@ -60,7 +64,10 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
     const response = await createTask(values);
     if (response) {
       onClose();
+      addToast({ message: "Created Task Successfully!", type: "success" });
+      return;
     }
+    addToast({ message: "Could not create Task!", type: "fail" });
   };
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

@@ -56,6 +56,7 @@ export function formatDateStringToHumanReadable(dateString) {
 export function getColor(str) {
   switch (str) {
     case "critical":
+    case "fail":
       return "bg-tags-critical";
     case "high":
       return "bg-tags-high";
@@ -64,6 +65,7 @@ export function getColor(str) {
     case "low":
       return "bg-tags-low";
     case "open":
+    case "success":
       return "bg-tags-open";
     case "in progress":
       return "bg-tags-in-progress";

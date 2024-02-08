@@ -2,6 +2,8 @@ import Button, { OutlinedButton } from "../ui/button/Button";
 import CustomTextarea from "../ui/form/CustomTextarea";
 import CustomInput from "../ui/form/CustomInput";
 
+import { useToast } from "../../contexts/toastContext";
+
 import { useTasks } from "../../contexts/tasksContext";
 import { useProjects } from "../../contexts/projectsContext";
 import { useMembers } from "../../contexts/membersContext";
@@ -28,6 +30,7 @@ const UpdateTaskModal = ({ id, isOpen, onClose }) => {
   const { tasks, updateTask, loading: taskLoading } = useTasks();
   const { projects } = useProjects();
   const { fetchMembers, members } = useMembers();
+  const { addToast } = useToast();
 
   const task = tasks.filter((task) => task.$id === id)[0];
 
@@ -63,7 +66,10 @@ const UpdateTaskModal = ({ id, isOpen, onClose }) => {
     const response = await updateTask(task.$id, values);
     if (response) {
       onClose();
+      addToast({ type: "success", message: "Updated Task Successfully!" });
+      return;
     }
+    addToast({ type: "fail", message: "Could not update task!" });
   };
 
   return (

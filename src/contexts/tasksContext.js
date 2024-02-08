@@ -117,10 +117,11 @@ const TasksProvider = ({ children }) => {
         type: "CREATE_TASK_SUCCESS",
         payload: response,
       });
-      return true;
+      return { success: true, error: "Created Task Successfully!" };
     } catch (error) {
       console.error(error);
       dispatch({ type: "CREATE_TASK_FAILURE", payload: error.message });
+      return { success: false, error: "Could not update task" };
     }
   }, []);
 
@@ -139,7 +140,7 @@ const TasksProvider = ({ children }) => {
         type: "UPDATE_TASK_SUCCESS",
         payload: { id, response },
       });
-      return true;
+      return { success: true, error: "Updated Successfully!" };
     } catch (error) {
       dispatch({ type: "UPDATE_TASK_FAILURE", payload: error.message });
       return { success: false, error: "Could not update the task." };

@@ -34,6 +34,7 @@ const Header = ({ title }) => {
       <button className="lg:hidden" onClick={openDrawer}>
         <FaBars size={24} />
       </button>
+
       <h1 className="text-2xl font-bold text-tertiary capitalize">{heading}</h1>
       <div className="flex items-center gap-2">
         {themeBtn}
