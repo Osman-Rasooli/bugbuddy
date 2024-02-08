@@ -141,3 +141,17 @@ export function combineBugsAndTasks(bugsArr, tasksArr) {
   const resultArray = Object.values(groupedItems);
   return resultArray;
 }
+
+export function loginAsAdmin() {
+  return {
+    email: process.env.REACT_APP_ADMIN_EMAIL,
+    password: process.env.REACT_APP_ADMIN_PASSWORD,
+  };
+}
+
+export function loginAsGuest() {
+  return {
+    email: process.env.REACT_APP_GUEST_EMAIL,
+    password: process.env.REACT_APP_GUEST_PASSWORD,
+  };
+}

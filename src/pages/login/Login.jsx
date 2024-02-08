@@ -3,6 +3,8 @@ import { useState } from "react";
 import logo from "../../assets/logo.png";
 import { BsExclamationCircle } from "react-icons/bs";
 
+import { loginAsAdmin, loginAsGuest } from "../../utils/utils";
+
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -25,7 +27,7 @@ const Login = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const submitHandler = async (values, { setSubmitting, setStatus }) => {
+  const submitHandler = async (values) => {
     try {
       setLoading(true);
       // Attempt to log in the user using the login function from AuthContext
@@ -33,9 +35,7 @@ const Login = () => {
       navigate("/");
     } catch (err) {
       console.error("Error during Login: ", err);
-      setStatus({ error: "Invalid credentials" });
     } finally {
-      setSubmitting(false);
       setLoading(false);
     }
   };
@@ -122,11 +122,19 @@ const Login = () => {
           </div>
 
           <div className="flex flex-col gap-4">
-            <button className="py-[6px] bg-blue-500 text-tertiary ring-[1px] ring-tertiary rounded-md transition hover:bg-tertiary hover:text-whiteLight">
-              Continue with Dummy Credentials 1
+            <button
+              onClick={() => submitHandler(loginAsAdmin())}
+              className="py-[6px] bg-blue-500 text-tertiary ring-[1px] ring-tertiary rounded-md transition hover:bg-tertiary hover:text-whiteLight"
+            >
+              Sign in as Dummy user{" "}
+              <small className=" text-[10px]">(ADMIN)</small>
             </button>
-            <button className="py-[6px] bg-gray-800 text-tertiary ring-[1px] ring-tertiary rounded-md transition hover:bg-tertiary hover:text-whiteLight">
-              Continue with Dummy Credentials 2
+            <button
+              onClick={() => submitHandler(loginAsGuest())}
+              className="py-[6px] bg-gray-800 text-tertiary ring-[1px] ring-tertiary rounded-md transition hover:bg-tertiary hover:text-whiteLight"
+            >
+              Sign in as Dummy user{" "}
+              <small className=" text-[10px]">(GUEST)</small>
             </button>
           </div>
         </div>

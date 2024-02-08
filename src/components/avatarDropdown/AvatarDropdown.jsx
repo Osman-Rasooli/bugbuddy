@@ -73,7 +73,7 @@ const AvatarDropdown = () => {
           </Link>
           <Link
             to="/settings"
-            className="flex items-center px-4 py-2 text-sm text-secondary dark:text-white text-sm hover:bg-secondaryLight hover:text-white dark:hover:bg-secondary"
+            className="flex items-center px-4 py-2 text-sm text-secondary dark:text-white hover:bg-secondaryLight hover:text-white dark:hover:bg-secondary"
             role="menuitem"
             tabIndex="-1"
           >
