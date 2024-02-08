@@ -29,11 +29,11 @@ const ProjectDetail = () => {
   if (!project)
     return (
       <div className="w-full h-32 flex justify-center items-center">
-        <h2>No data Found</h2>
+        <h2 className="text-secondary dark:text-white">No data Found</h2>
       </div>
     );
   return (
-    <div className="px-4">
+    <div className="px-4 text-secondary dark:text-white">
       {/* PROJECT NAME / ALIAS */}
       <div className="flex flex-col md:flex-row gap-2 items-center mt-5 mb-8">
         <h2 className="text-tertiary leading-7 text-xl font-bold uppercase text-center">
@@ -54,19 +54,19 @@ const ProjectDetail = () => {
         <div className="right basis-[300px] mt-5">
           {/* CREATED BY / CREATED DATE / DUE DATE */}
           <div className="flex items-center justify-between gap-5 text-sm mb-4">
-            <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+            <span className="bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
               Created By:{" "}
             </span>
             <span>{project.createdBy}</span>
           </div>
           <div className="flex items-center justify-between gap-5 text-sm mb-4">
-            <span className=" bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+            <span className=" bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
               Created Date:{" "}
             </span>
             <span>{formatDateStringToHumanReadable(project.createdDate)}</span>
           </div>
           <div className="flex items-center justify-between gap-5 text-sm mb-4">
-            <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+            <span className="bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
               Due Date:{" "}
             </span>
             <span>{formatDateStringToHumanReadable(project.dueDate)}</span>
@@ -74,7 +74,7 @@ const ProjectDetail = () => {
           <hr className="text-tertiary opacity-40" />
           {/* PROJECT MANAGER */}
           <div className="flex items-center justify-between gap-5 text-sm my-4">
-            <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+            <span className="bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
               Project Manager:{" "}
             </span>
             <span>{project.manager || "-"}</span>
@@ -82,7 +82,7 @@ const ProjectDetail = () => {
           <hr className="text-tertiary opacity-40" />
           {/* PRIORITY / STATUS / PROGRESS */}
           <div className="flex items-center justify-between gap-5 text-sm my-4">
-            <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+            <span className="bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
               Status:{" "}
             </span>
             <span
@@ -94,7 +94,7 @@ const ProjectDetail = () => {
             </span>
           </div>
           <div className="flex items-center justify-between gap-5 text-sm mb-4">
-            <span className=" bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+            <span className=" bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
               Priority:{" "}
             </span>
             <span
@@ -106,7 +106,7 @@ const ProjectDetail = () => {
             </span>
           </div>
           <div className="flex items-center justify-between gap-5 text-sm mb-4">
-            <span className=" bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+            <span className=" bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
               Progress:{" "}
             </span>
             <ProgressBar
@@ -118,21 +118,21 @@ const ProjectDetail = () => {
           {/* BUGS / TASKS */}
           <div className="flex gap-5 my-4">
             <div className="flex items-center gap-2 text-sm border-[1px] border-tertiary rounded-sm">
-              <span className="bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+              <span className="bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
                 Tasks:{" "}
               </span>
               <span
-                className={`uppercase block py-[0.5px] text-whiteLight font-bold rounded-sm shadow-sm pr-[7px] text-[12px]`}
+                className={`uppercase block py-[0.5px] dark:text-whiteLight font-bold rounded-sm shadow-sm pr-[7px] text-[12px]`}
               >
                 {tasksCount}
               </span>
             </div>
             <div className="flex items-center gap-2 text-sm border-[1px] border-tertiary rounded-sm">
-              <span className=" bg-tertiary py-[2px] px-[4px] text-xs rounded-sm">
+              <span className=" bg-tertiary text-white py-[2px] px-[4px] text-xs rounded-sm">
                 Bugs:{" "}
               </span>
               <span
-                className={`uppercase block py-[0.5px] text-whiteLight font-bold rounded-sm shadow-sm pr-[7px] text-[12px] `}
+                className={`uppercase block py-[0.5px] dark:text-whiteLight font-bold rounded-sm shadow-sm pr-[7px] text-[12px] `}
               >
                 {bugsCount}
               </span>

@@ -78,9 +78,6 @@ const Details = () => {
           </OutlinedButton>
         )}
       </div>
-      {/* {pagePath === "projects" && <ProjectDetail />} */}
-      {/* {pagePath === "bugs" && <BugDetail />} */}
-      {/* {pagePath === "tasks" && <TaskDetail />} */}
       {content}
     </div>
   );
