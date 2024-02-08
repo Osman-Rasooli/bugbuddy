@@ -31,7 +31,10 @@ const Header = ({ title }) => {
   );
   return (
     <header className=" text-white p-4 px-8 border-b-2 border-white dark:border-secondary flex items-center justify-between">
-      <button className="lg:hidden" onClick={openDrawer}>
+      <button
+        className="text-secondary dark:text-white lg:hidden"
+        onClick={openDrawer}
+      >
         <FaBars size={24} />
       </button>
 

@@ -87,7 +87,7 @@ const Sidebar = () => {
       </div>
 
       <button
-        className="lg:hidden absolute top-6 right-5 text-white"
+        className="lg:hidden absolute top-6 right-5 text-secondary dark:text-white"
         onClick={toggleDrawer}
       >
         {isDrawerOpen ? <FaTimes size={15} /> : <FaBars size={24} />}
