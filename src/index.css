@@ -15,7 +15,7 @@
 }
 
 /* Status */
-.status-active {
+/* .status-active {
   color: #4caf50;
 }
 
@@ -46,7 +46,7 @@
 }
 .status-review {
   color: royalblue;
-}
+} */
 
 /* Status */
 
@@ -150,7 +150,7 @@ body {
 
 /* Priority Tags */
 
-.priority-critical,
+/* .priority-critical,
 .severity-critical {
   color: red;
 }
@@ -163,7 +163,7 @@ body {
 }
 .priority-low {
   color: #b7e1a1;
-}
+} */
 
 /* Priority Tags */
 
@@ -174,12 +174,8 @@ table td a {
 
 /* ProgresBar */
 
-/* ProgressBar.css */
-
 .progress-bar {
   min-width: 100px;
-  /* width: 100%; */
-  /* height: 12px; */
   background-color: #e0e0e0;
   overflow: hidden;
   position: relative;
@@ -216,13 +212,4 @@ table td a {
   border-radius: 10px;
   z-index: -1;
 }
-
 /* ProgressBar.css */
-
-/* ::placeholder {
-  color: rgba(255, 255, 255, 0.2) !important;
-}
-
-.login::placeholder {
-  color: #3333338b !important;
-} */

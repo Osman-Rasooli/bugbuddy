@@ -1,4 +1,5 @@
 import { icons } from "../../../data/data";
+import { getColor } from "../../../utils/utils";
 import { Link } from "react-router-dom";
 import {
   trimString,
@@ -62,19 +63,27 @@ const Table = ({ list, title, className, link, loading, error }) => {
       );
     }
 
-    // Check if an icon exists for the priority value
     if (Object.keys(icons).includes(column)) {
+      // Check if an icon exists for the priority value
       return (
         <div
-          className={`flex items-center justify-center gap-[5px] font-normal bg-[#fff] dark:bg-[#191919] rounded-sm ${column}-${value.replaceAll(
+          className={`flex items-center justify-center gap-[5px] p-[2px] text-sm font-normal rounded-sm ${column}-${value.replaceAll(
             " ",
             "-"
-          )}`}
+          )} ${getColor(value)}`}
         >
-          <span>{icons[column][value]}</span>
-          <span className=" capitalize">{value}</span>
+          <span className={`text-[#000] dark:text-white`}>
+            {icons[column][value]}
+          </span>
+          <span className=" capitalize text-[#000] dark:text-[#fff]">
+            {value}
+          </span>
         </div>
       );
+    }
+
+    if (column === "Role") {
+      console.log("hi");
     }
 
     // Return the original value if no special handling is required

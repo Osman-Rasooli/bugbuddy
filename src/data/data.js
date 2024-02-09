@@ -61,7 +61,7 @@ export const colors = {
   medium: "#3498db",
   low: "#6DBE45",
   open: "#2ecc71",
-  "in progress": "#87ceeb",
+  "in progress": "#007B8A",
   review: "royalblue",
   closed: "#808080",
   resolved: "#0066cc",

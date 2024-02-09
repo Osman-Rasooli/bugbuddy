@@ -66,6 +66,7 @@ export function getColor(str) {
       return "bg-tags-low";
     case "open":
     case "success":
+    case "active":
       return "bg-tags-open";
     case "in progress":
       return "bg-tags-in-progress";
