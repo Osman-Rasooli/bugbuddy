@@ -29,7 +29,7 @@ const AvatarDropdown = () => {
     };
   }, []);
 
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   return (
     <div className="relative inline-block text-left">
@@ -69,7 +69,11 @@ const AvatarDropdown = () => {
             tabIndex="-1"
           >
             <FaUserCircle size={18} className="mr-2" />
-            Profile
+            Profile &nbsp;
+            <span className="text-tertiary text-xs uppercase">
+              {" "}
+              ({user?.name})
+            </span>
           </Link>
           <Link
             to="/settings"

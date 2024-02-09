@@ -58,7 +58,15 @@ const AuthProvider = ({ children }) => {
     const checkUser = async () => {
       try {
         const user = await account.get();
-        setUser(user);
+        const memberData = await members.filter(
+          (mem) => mem.email === user.email
+        )[0];
+        setUser({
+          ...user,
+          name: memberData?.name,
+          email: memberData?.email,
+          role: memberData?.role,
+        });
       } catch (error) {
         setUser(null);
       } finally {
@@ -67,7 +75,7 @@ const AuthProvider = ({ children }) => {
     };
 
     checkUser();
-  }, []);
+  }, [members]);
 
   return (
     <AuthContext.Provider value={{ user, login, logout, register }}>

@@ -18,13 +18,16 @@ const CustomField = ({ label, id, type, options, className, ...props }) => {
 
   return (
     <div className="mb-4">
-      <label htmlFor={id} className="block mb-1 uppercase text-[12px]">
+      <label
+        htmlFor={id}
+        className="block mb-1 uppercase text-[12px] text-secondary dark:text-white"
+      >
         {label}
       </label>
       {type === "select" ? (
         <select
           {...inputProps}
-          className={`w-full bg-white dark:bg-secondary px-2 py-1 text-sm rounded-sm outline-none ${className}`}
+          className={`w-full bg-white dark:bg-secondary px-2 py-1 text-sm text-secondary dark:text-white rounded-sm outline-none placeholder:text-[#aaa] dark:placeholder:text-[#666] ${className}`}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -35,7 +38,7 @@ const CustomField = ({ label, id, type, options, className, ...props }) => {
       ) : (
         <input
           {...inputProps}
-          className={`w-full bg-white dark:bg-secondary px-2 py-1 text-sm rounded-sm outline-none ${className}`}
+          className={`w-full bg-white dark:bg-secondary px-2 py-1 text-sm text-secondary dark:text-white rounded-sm outline-none placeholder:text-[#aaa] dark:placeholder:text-[#666] ${className} `}
         />
       )}
       {meta.touched && meta.error && (

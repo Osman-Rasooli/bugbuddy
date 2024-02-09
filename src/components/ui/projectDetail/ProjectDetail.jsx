@@ -9,12 +9,19 @@ import { useBugs } from "../../../contexts/bugsContext";
 import { useTasks } from "../../../contexts/tasksContext";
 
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-const ProjectDetail = () => {
+const ProjectDetail = ({ setIsManager, user }) => {
   const { id } = useParams();
   const { projects } = useProjects();
 
   const project = projects.filter((item) => item.$id === id)[0];
+
+  useEffect(() => {
+    if (project?.manager === user.name) {
+      setIsManager(true);
+    }
+  }, [user.name]);
 
   const { bugs } = useBugs();
   const { tasks } = useTasks();

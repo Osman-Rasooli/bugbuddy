@@ -17,13 +17,13 @@ import UpdateModal from "../../components/updateModal/UpdateModal";
 
 const Details = () => {
   const { user } = useAuth();
-  // console.log(user.labels?.includes("admin"));
   const location = useLocation();
   const pagePath = location.pathname.split("/")[1];
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
   const [isAssignedTo, setIsAssignedTo] = useState(false);
+  const [isManager, setIsManager] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
@@ -35,7 +35,7 @@ const Details = () => {
 
   let content;
   if (pagePath === "projects") {
-    content = <ProjectDetail />;
+    content = <ProjectDetail setIsManager={setIsManager} user={user} />;
   } else if (pagePath === "bugs") {
     content = <BugDetail setIsAssignedTo={setIsAssignedTo} />;
   } else {
@@ -59,7 +59,7 @@ const Details = () => {
         </Link>
 
         {/* Only ADMIN and MANAGER can UPDATE items */}
-        {(user.labels?.includes("admin") || isAssignedTo) && (
+        {(user.labels?.includes("admin") || isAssignedTo || isManager) && (
           <OutlinedButton
             onClick={() => setUpdateModalOpen(true)}
             className="flex gap-1 items-center"

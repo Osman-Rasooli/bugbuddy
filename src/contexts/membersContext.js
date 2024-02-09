@@ -3,6 +3,7 @@ import React, {
   useReducer,
   useContext,
   useCallback,
+  useEffect,
 } from "react";
 import {
   databases,
@@ -116,6 +117,14 @@ const MembersProvider = ({ children }) => {
     },
     [dispatch]
   );
+
+  useEffect(() => {
+    try {
+      fetchMembers();
+    } catch (error) {
+      console.error("Could not fetch Members");
+    }
+  }, [fetchMembers]);
   return (
     <MembersContext.Provider value={{ ...state, fetchMembers, createMember }}>
       {children}
