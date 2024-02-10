@@ -39,8 +39,6 @@ const CreateProjectModal = ({ isOpen, onClose }) => {
     // error: projectError,
   } = useProjects();
 
-  console.log(creator);
-
   const submitHandler = async (values) => {
     values = {
       ...values,
