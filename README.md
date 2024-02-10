@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# BugBuddy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+BugBuddy is a web application designed to streamline bug tracking and project management for development teams. With BugBuddy, teams can efficiently manage bugs, tasks, and projects all in one place, facilitating collaboration and improving productivity.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Bug Tracking**: Easily create, update, and track bugs throughout the development process.
+- **Task Management**: Organize tasks, assign them to team members, and track their progress.
+- **Project Management**: Manage projects, set milestones, and track project progress.
+- **User Roles**: Define user roles and permissions to control access to features and data.
+- **Dashboard**: View a centralized dashboard with an overview of bugs, tasks, and project statuses.
+- **Dark Mode**: Enjoy a comfortable viewing experience with dark mode support.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  - React.js
+  - React Router DOM
+  - React Icons
+  - Recharts
+  - Formik
+  - Yup
+  - Tailwind CSS
 
-### `npm test`
+- **Backend**:
+  - Appwrite (Backend as a Service)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setting up Appwrite
 
-### `npm run build`
+1. Sign up for an account on [Appwrite](https://appwrite.io/).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Create a new project in the Appwrite dashboard.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Configure your Appwrite project with the following settings:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - **Project Name**: BugBuddy
+   - **API Endpoint**: [Your Appwrite API Endpoint]
+   - **Project ID**: [Your Appwrite Project ID]
+   - **JWT Authentication**: Enabled
 
-### `npm run eject`
+4. Create a new collection in your Appwrite project to store bug, task, and project data. Define the necessary fields for each collection (e.g., title, description, status, assigned to, etc.).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. Obtain your Appwrite API key and secret from the "API Keys" section of the Appwrite dashboard.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+6. Update your BugBuddy application code to use the following environment variables:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   - `REACT_APP_APPWRITE_API_KEY`: Your Appwrite API key
+   - `REACT_APP_APPWRITE_ENDPOINT`: Your Appwrite API endpoint
+   - `REACT_APP_APPWRITE_PROJECT`: Your Appwrite project ID
+   - `REACT_APP_APPWRITE_DATABASE`: Your Appwrite database ID
+   - `REACT_APP_APPWRITE_COLLECTION_PROJECTS`: ID of the collection for projects
+   - `REACT_APP_APPWRITE_COLLECTION_MEMBERS`: ID of the collection for members
+   - `REACT_APP_APPWRITE_COLLECTION_BUGS`: ID of the collection for bugs
+   - `REACT_APP_APPWRITE_COLLECTION_TASKS`: ID of the collection for tasks
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   Ensure that you securely store these environment variables and do not expose them publicly.
 
-## Learn More
+## Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/bugbuddy.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd bugbuddy
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
