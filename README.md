@@ -74,3 +74,23 @@ BugBuddy is a web application designed to streamline bug tracking and project ma
    ```bash
    npm start
    ```
+
+## Contributing
+
+We welcome contributions from the community! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request. Here are a few ideas for features that contributors can work on:
+
+- **Calendar Integration**: Add calendar functionality to schedule tasks and track deadlines.
+- **Kanban Board**: Implement a Kanban board for visualizing tasks and their status.
+- **Comments**: Allow users to add comments to bugs, tasks, and projects for better communication and collaboration.
+
+If you have other ideas for features or improvements, don't hesitate to share them! For major changes, please open an issue first to discuss what you would like to change.
+
+When contributing to this repository, please first discuss the change you wish to make via issue or email before making a change. Please note we have a code of conduct, please follow it in all your interactions with the project.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+- [Appwrite](https://appwrite.io/) for providing the backend infrastructure.
