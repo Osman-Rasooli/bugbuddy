@@ -73,14 +73,14 @@ visit the live website [BugBuddy](https://bugbuddy.vercel.app/). 🔍
    - Create a .env file in the project root.
    - Add the following line and replace the environment variables:
    ```env
-   - `REACT_APP_APPWRITE_API_KEY`: Your Appwrite API key
-   - `REACT_APP_APPWRITE_ENDPOINT`: Your Appwrite API endpoint
-   - `REACT_APP_APPWRITE_PROJECT`: Your Appwrite project ID
-   - `REACT_APP_APPWRITE_DATABASE`: Your Appwrite database ID
-   - `REACT_APP_APPWRITE_COLLECTION_PROJECTS`: ID of the collection for projects
-   - `REACT_APP_APPWRITE_COLLECTION_MEMBERS`: ID of the collection for members
-   - `REACT_APP_APPWRITE_COLLECTION_BUGS`: ID of the collection for bugs
-   - `REACT_APP_APPWRITE_COLLECTION_TASKS`: ID of the collection for tasks
+   REACT_APP_APPWRITE_API_KEY=Your_Appwrite_API_key
+   REACT_APP_APPWRITE_ENDPOINT=Your_Appwrite_API_endpoint
+   REACT_APP_APPWRITE_PROJECT=Your_Appwrite_project_ID
+   REACT_APP_APPWRITE_DATABASE=Your_Appwrite_database_ID
+   REACT_APP_APPWRITE_COLLECTION_PROJECTS=ID_of_the_collection_for_projects
+   REACT_APP_APPWRITE_COLLECTION_MEMBERS=ID_of_the_collection_for_members
+   REACT_APP_APPWRITE_COLLECTION_BUGS=ID_of_the_collection_for_bugs
+   REACT_APP_APPWRITE_COLLECTION_TASKS=ID_of_the_collection_for_tasks
    ```
 4. Install dependencies:
    ```bash
@@ -110,3 +110,7 @@ This project is licensed under the [MIT License](LICENSE).
 ## Acknowledgements
 
 - [Appwrite](https://appwrite.io/) for providing the backend infrastructure.
+
+## Contact Information
+
+For inquiries or support, please contact us at [mohammad.osmanrasooli1973@gmail.com](mailto:mohammad.osmanrasooli1973@gmail.com). 📧
