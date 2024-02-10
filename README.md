@@ -2,6 +2,8 @@
 
 BugBuddy is a web application designed to streamline bug tracking and project management for development teams. With BugBuddy, teams can efficiently manage bugs, tasks, and projects all in one place, facilitating collaboration and improving productivity.
 
+visit the live website [BugBuddy](https://bugbuddy.vercel.app/). 🔍
+
 ## Features
 
 - **Bug Tracking**: Easily create, update, and track bugs throughout the development process.
@@ -21,6 +23,7 @@ BugBuddy is a web application designed to streamline bug tracking and project ma
   - Recharts
   - Formik
   - Yup
+  - Context API with useReducer
   - Tailwind CSS
 
 - **Backend**:
@@ -66,11 +69,24 @@ BugBuddy is a web application designed to streamline bug tracking and project ma
    ```bash
    cd bugbuddy
    ```
-3. Install dependencies:
+3. Create .env File:
+   - Create a .env file in the project root.
+   - Add the following line and replace the environment variables:
+   ```env
+   - `REACT_APP_APPWRITE_API_KEY`: Your Appwrite API key
+   - `REACT_APP_APPWRITE_ENDPOINT`: Your Appwrite API endpoint
+   - `REACT_APP_APPWRITE_PROJECT`: Your Appwrite project ID
+   - `REACT_APP_APPWRITE_DATABASE`: Your Appwrite database ID
+   - `REACT_APP_APPWRITE_COLLECTION_PROJECTS`: ID of the collection for projects
+   - `REACT_APP_APPWRITE_COLLECTION_MEMBERS`: ID of the collection for members
+   - `REACT_APP_APPWRITE_COLLECTION_BUGS`: ID of the collection for bugs
+   - `REACT_APP_APPWRITE_COLLECTION_TASKS`: ID of the collection for tasks
+   ```
+4. Install dependencies:
    ```bash
    npm install
    ```
-4. Start the development server:
+5. Start the development server:
    ```bash
    npm start
    ```
