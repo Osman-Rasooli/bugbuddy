@@ -18,6 +18,7 @@ import {
 import { AiOutlineWarning, AiOutlinePauseCircle } from "react-icons/ai";
 import { MdInfoOutline, MdCheckCircle, MdCancel } from "react-icons/md";
 import { BiRun } from "react-icons/bi";
+import { IoPersonCircleSharp } from "react-icons/io5";
 
 export const links = [
   { name: "Home", to: "/", icon: <FaHome /> },
@@ -39,6 +40,7 @@ export const icons = {
     tester: <FaBug />,
     designer: <FaPalette />,
     admin: <FaUserShield />,
+    guest: <IoPersonCircleSharp />,
   },
   status: {
     completed: <BsCheckCircle />,
