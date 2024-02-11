@@ -63,7 +63,6 @@ const AvatarDropdown = () => {
           role="none"
         >
           <Link
-            to="/profile"
             className="flex items-center px-4 py-2 text-secondary dark:text-white text-sm hover:bg-secondaryLight hover:text-white dark:hover:bg-secondary"
             role="menuitem"
             tabIndex="-1"
@@ -76,7 +75,6 @@ const AvatarDropdown = () => {
             </span>
           </Link>
           <Link
-            to="/settings"
             className="flex items-center px-4 py-2 text-sm text-secondary dark:text-white hover:bg-secondaryLight hover:text-white dark:hover:bg-secondary"
             role="menuitem"
             tabIndex="-1"
@@ -86,7 +84,7 @@ const AvatarDropdown = () => {
           </Link>
           <button
             onClick={logout}
-            className="w-full flex items-center px-4 py-2 text-sm text-secondary dark:text-white text-sm hover:bg-secondaryLight hover:text-white dark:hover:bg-secondary"
+            className="w-full flex items-center px-4 py-2 text-sm text-secondary dark:text-white hover:bg-secondaryLight hover:text-white dark:hover:bg-secondary"
             role="menuitem"
             tabIndex="-1"
           >
