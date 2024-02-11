@@ -2,7 +2,6 @@ import Button, { OutlinedButton } from "../ui/button/Button";
 import CustomTextarea from "../ui/form/CustomTextarea";
 import CustomInput from "../ui/form/CustomInput";
 
-import { useAuth } from "../../contexts/authContext";
 import { useProjects } from "../../contexts/projectsContext";
 import { useMembers } from "../../contexts/membersContext";
 
@@ -33,8 +32,6 @@ const validationSchema = Yup.object().shape({
 const UpdateProjectModal = ({ id, isOpen, onClose }) => {
   const { projects, updateProject, loading: projectLoading } = useProjects();
   const { fetchMembers, members } = useMembers();
-  const user = useAuth();
-  console.log(user);
 
   const project = projects.filter((project) => project.$id === id)[0];
 

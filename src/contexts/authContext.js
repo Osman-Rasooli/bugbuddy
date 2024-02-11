@@ -27,9 +27,10 @@ const AuthProvider = ({ children }) => {
         email: member?.email || email,
         role: member?.role || role,
       });
+      return { success: true, message: "Logged In Successfully!" };
     } catch (error) {
-      console.error("Login error:", error);
-      throw error;
+      // console.error("Login error:", error);
+      return { success: false, message: "Invalid Credentials!" };
     }
   };
 
@@ -38,7 +39,7 @@ const AuthProvider = ({ children }) => {
       await account.deleteSession("current");
       setUser(null);
     } catch (error) {
-      console.error("Logout error:", error);
+      // console.error("Logout error:", error);
       throw error;
     }
   };
@@ -49,7 +50,7 @@ const AuthProvider = ({ children }) => {
       await createMember({ name, email, role });
       await login(email, password, name, role);
     } catch (error) {
-      console.error("Register error:", error);
+      // console.error("Register error:", error);
       throw error;
     }
   };

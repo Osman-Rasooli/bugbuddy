@@ -26,15 +26,20 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState(null);
 
   const submitHandler = async (values) => {
     try {
       setLoading(true);
       // Attempt to log in the user using the login function from AuthContext
-      await login(values.email, values.password);
+      const response = await login(values.email, values.password);
+      if (!response.success) {
+        throw new Error(response);
+      }
       navigate("/");
     } catch (err) {
-      console.error("Error during Login: ", err);
+      // console.error("Error during Login: ", err);
+      setErr("Invalid Credentials");
     } finally {
       setLoading(false);
     }
@@ -53,6 +58,13 @@ const Login = () => {
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
+          {err && (
+            <div className=" text-center">
+              <h3 className=" text-tertiary bg-white mt-5 py-2 px-3 inline-block">
+                {err}
+              </h3>
+            </div>
+          )}
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
